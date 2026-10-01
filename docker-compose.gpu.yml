@@ -1,0 +1,11 @@
+# Optional overlay: give Ollama an NVIDIA GPU (needs the NVIDIA Container Toolkit).
+# Used by `make up-gpu`. Macs have no GPU passthrough; run Ollama natively instead.
+services:
+  ollama:
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]

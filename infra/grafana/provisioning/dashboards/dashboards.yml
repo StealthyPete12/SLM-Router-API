@@ -1,0 +1,16 @@
+# Loads every dashboard JSON in infra/grafana/dashboards (mounted read-only).
+# Edit the JSON in the repo, not in the UI: UI edits cannot be saved.
+apiVersion: 1
+
+providers:
+  - name: slm-router
+    orgId: 1
+    folder: SLM Router
+    folderUid: slm-router
+    type: file
+    disableDeletion: true
+    allowUiUpdates: false
+    updateIntervalSeconds: 30
+    options:
+      path: /var/lib/grafana/dashboards
+      foldersFromFilesStructure: false

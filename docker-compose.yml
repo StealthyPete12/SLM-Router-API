@@ -1,0 +1,206 @@
+# The whole stack: router API, Ollama, Postgres, Redis, Prometheus, Grafana and the
+# Streamlit playground. Values come from .env when present (see .env.example).
+# Start with `make up`, then `make models` once to download the local models.
+# NVIDIA GPU: `make up-gpu` adds docker-compose.gpu.yml; CPU is the default.
+# No cloud key or no models? docker-compose.mock.yml / docker-compose.offline.yml
+# swap in clearly labelled mock models (STACK_MODE in .env; see the README).
+#
+# Every port is bound to 127.0.0.1: nothing is exposed beyond this machine.
+#   API         http://localhost:8000      (docs at /docs, metrics at /metrics)
+#   Playground  http://localhost:8501
+#   Grafana     http://localhost:3000
+#   Prometheus  http://localhost:9090
+#   Postgres    localhost:5432
+
+name: slm-router
+
+services:
+  ollama:
+    image: ollama/ollama:0.35.0
+    environment:
+      # Ollama defaults to 4096; must match context_window in config/models.yaml.
+      OLLAMA_CONTEXT_LENGTH: ${OLLAMA_CONTEXT_LENGTH:-8192}
+      # How long a model stays loaded after a request (-1 = forever, good before a demo).
+      OLLAMA_KEEP_ALIVE: ${OLLAMA_KEEP_ALIVE:-5m}
+    volumes:
+      - ollama-models:/root/.ollama
+    ports:
+      - "127.0.0.1:11434:11434"
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+    restart: unless-stopped
+
+  api:
+    build: .
+    environment:
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://ollama:11434}
+      OLLAMA_CONTEXT_LENGTH: ${OLLAMA_CONTEXT_LENGTH:-8192}
+      LOCAL_PROVIDER: ${LOCAL_PROVIDER:-ollama}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      # Clients send it as `Authorization: Bearer ...`. Unset = /v1 endpoints answer 503.
+      ROUTER_API_KEY: ${ROUTER_API_KEY:-}
+      # The premium model. Empty values fall back to the defaults in config/models.yaml.
+      PREMIUM_PROVIDER: ${PREMIUM_PROVIDER:-}
+      PREMIUM_BASE_URL: ${PREMIUM_BASE_URL:-}
+      PREMIUM_MODEL: ${PREMIUM_MODEL:-}
+      PREMIUM_API_KEY: ${PREMIUM_API_KEY:-}
+      # Prices from the provider's pricing page; unset = cost and savings unknown.
+      PREMIUM_USD_PER_1M_INPUT: ${PREMIUM_USD_PER_1M_INPUT:-}
+      PREMIUM_USD_PER_1M_OUTPUT: ${PREMIUM_USD_PER_1M_OUTPUT:-}
+      PREMIUM_PRICED_ON: ${PREMIUM_PRICED_ON:-}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-router}:${POSTGRES_PASSWORD:-router-local-dev}@postgres:5432/${POSTGRES_DB:-router}
+      # Exact-match response cache. Turn caching off with cache.enabled in routing.yaml.
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+    volumes:
+      # Edit the YAML and `docker compose restart api`; no rebuild needed.
+      - ./config:/app/config:ro
+    ports:
+      - "127.0.0.1:8000:8000"
+    extra_hosts:
+      # Lets OLLAMA_BASE_URL point at an Ollama running natively on the host.
+      - "host.docker.internal:host-gateway"
+    depends_on:
+      ollama:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    healthcheck:
+      # Liveness only: /health answers 200 even when Ollama, Postgres or Redis is down.
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 6
+      start_period: 5s
+    restart: unless-stopped
+
+  postgres:
+    image: postgres:16.15-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-router}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-router-local-dev}
+      POSTGRES_DB: ${POSTGRES_DB:-router}
+      # Read-only role for Grafana, created by grafana-reader.sh.
+      GRAFANA_DB_PASSWORD: ${GRAFANA_DB_PASSWORD:-grafana-local-dev}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      # Run once, on an empty volume: the schema, then the Grafana role.
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - ./infra/postgres/grafana-reader.sh:/docker-entrypoint-initdb.d/02-grafana-reader.sh:ro
+    ports:
+      - "127.0.0.1:5432:5432"
+    healthcheck:
+      # Over TCP: during first-run initialisation Postgres only listens on its socket,
+      # so a socket check would report ready before the real server is up.
+      test: ["CMD-SHELL", "pg_isready -h 127.0.0.1 -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+      start_period: 10s
+    restart: unless-stopped
+
+  redis:
+    image: redis:7.4.11-alpine
+    # A cache, not a database: nothing is saved to disk, memory is capped, and the least
+    # recently used entries are evicted first. Entries also expire (routing.yaml cache.ttl_s).
+    # No published port: only the API talks to it (`docker compose exec redis redis-cli`).
+    command: ["redis-server", "--save", "", "--appendonly", "no",
+              "--maxmemory", "64mb", "--maxmemory-policy", "allkeys-lru"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+      start_period: 5s
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.15.0
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+    volumes:
+      - ./infra/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    ports:
+      - "127.0.0.1:9090:9090"
+    depends_on:
+      api:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:9090/-/ready"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 10s
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:13.2.3
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      # Anyone who can reach localhost:3000 may view (not edit) the dashboards.
+      GF_AUTH_ANONYMOUS_ENABLED: ${GRAFANA_ANONYMOUS_VIEW:-true}
+      GF_AUTH_ANONYMOUS_ORG_ROLE: Viewer
+      GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /var/lib/grafana/dashboards/slm-router.json
+      GF_USERS_ALLOW_SIGN_UP: "false"
+      GF_ANALYTICS_REPORTING_ENABLED: "false"
+      GF_ANALYTICS_CHECK_FOR_UPDATES: "false"
+      GF_NEWS_NEWS_FEED_ENABLED: "false"
+      # Read by provisioning/datasources/datasources.yml.
+      POSTGRES_DB: ${POSTGRES_DB:-router}
+      GRAFANA_DB_PASSWORD: ${GRAFANA_DB_PASSWORD:-grafana-local-dev}
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./infra/grafana/dashboards:/var/lib/grafana/dashboards:ro
+      - grafana-data:/var/lib/grafana
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      prometheus:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 20s
+    restart: unless-stopped
+
+  playground:
+    build:
+      context: .
+      dockerfile: ui/Dockerfile
+    environment:
+      # The API over the Compose network; the browser only talks to Streamlit.
+      ROUTER_API_URL: http://api:8000
+      # Used when the page's API-key field is left empty. Never shown in the page.
+      ROUTER_API_KEY: ${ROUTER_API_KEY:-}
+    ports:
+      - "127.0.0.1:8501:8501"
+    depends_on:
+      # Started, not healthy: the playground shows the API's state and retries.
+      api:
+        condition: service_started
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8501/_stcore/health', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 6
+      start_period: 10s
+    restart: unless-stopped
+
+volumes:
+  ollama-models:
+  postgres-data:
+  prometheus-data:
+  grafana-data:

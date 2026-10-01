@@ -1,0 +1,7 @@
+*
+!pyproject.toml
+!uv.lock
+!app/
+!config/
+!ui/
+**/__pycache__

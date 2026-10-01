@@ -1,0 +1,59 @@
+[project]
+name = "slm-router"
+version = "0.1.0"
+description = "Routes each prompt to the cheapest model that can handle it: local SLMs via Ollama, or a premium cloud LLM."
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "asyncpg>=0.30",
+    "fastapi>=0.115",
+    "httpx>=0.28",
+    "prometheus-client>=0.21",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "pyyaml>=6.0",
+    "redis>=5.2",
+    "tiktoken>=0.8",
+    "uvicorn>=0.32",
+]
+
+[dependency-groups]
+dev = [
+    "fakeredis>=2.26",
+    "pytest>=8.3",
+    "ruff>=0.8",
+]
+ui = [
+    "httpx>=0.28",
+    "streamlit>=1.40",
+]
+
+[tool.uv]
+package = false
+# `uv sync` installs the Streamlit playground too; the API image skips it.
+default-groups = ["dev", "ui"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # bugbear
+    "UP",  # pyupgrade
+    "SIM", # simplify
+    "ANN", # type annotations
+    "BLE", # no blind `except Exception`
+    "RUF",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["ANN"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra"

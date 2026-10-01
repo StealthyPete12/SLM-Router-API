@@ -1,0 +1,39 @@
+# Grafana data sources, provisioned at startup; no clicking needed.
+# The uids are fixed so the dashboard JSON can reference them.
+# $VARS are filled from the grafana container's environment (docker-compose.yml).
+apiVersion: 1
+
+deleteDatasources:
+  - name: Router Postgres
+    orgId: 1
+  - name: Prometheus
+    orgId: 1
+
+datasources:
+  - name: Router Postgres
+    uid: slm-postgres
+    type: grafana-postgresql-datasource
+    access: proxy
+    url: postgres:5432
+    user: grafana_reader             # read-only role from infra/postgres/grafana-reader.sh
+    isDefault: false
+    editable: false
+    jsonData:
+      database: $POSTGRES_DB
+      sslmode: disable               # Compose-internal network only
+      postgresVersion: 1600
+      timescaledb: false
+      maxOpenConns: 5
+    secureJsonData:
+      password: $GRAFANA_DB_PASSWORD
+
+  - name: Prometheus
+    uid: slm-prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: false
+    jsonData:
+      timeInterval: 10s              # matches scrape_interval in prometheus.yml
+      httpMethod: POST

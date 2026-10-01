@@ -1,0 +1,40 @@
+{"id": "chitchat-hello", "set": "main", "prompt": "Hi! What can you do?", "feedback": 1}
+{"id": "chitchat-thanks", "set": "main", "prompt": "Thanks, that was helpful!", "feedback": 1}
+{"id": "chitchat-morning", "set": "main", "prompt": "Good morning! How are you?"}
+{"id": "qa-capital", "set": "main", "prompt": "What is the capital of France?", "feedback": 1}
+{"id": "qa-photosynthesis", "set": "main", "prompt": "What is photosynthesis?", "feedback": 1}
+{"id": "qa-bones", "set": "main", "prompt": "How many bones are in the adult human body?", "feedback": -1}
+{"id": "qa-hamlet", "set": "main", "prompt": "Who wrote Hamlet?"}
+{"id": "rewrite-professional", "set": "main", "prompt": "Rewrite this message so it sounds more professional: hey cant make it tmrw, lets push the meeting to friday", "feedback": 1}
+{"id": "rewrite-grammar", "set": "main", "prompt": "Fix grammar in this sentence: their going to the park tomorow with there dog.", "feedback": 1}
+{"id": "rewrite-shorten", "set": "main", "prompt": "Shorten this paragraph: The quarterly planning meeting has been moved from Tuesday afternoon to Thursday morning because several team members will be travelling early in the week."}
+{"id": "summarise-notes", "set": "main", "prompt": "Summarise these notes in 3 bullets: The team reviewed the launch timeline. Design is two weeks behind because of late feedback. Engineering finished the API and started load testing. Marketing wants a beta list by the end of the month. Everyone agreed to move the public launch by one week.", "feedback": 1, "note": "body words 'design' and 'plan' make the keyword rules score it as analysis; a known misroute for Phase 4's evaluation"}
+{"id": "summarise-tldr", "set": "main", "prompt": "TL;DR of this: Tea is grown in hills with warm days and cool nights. Green tea is heated soon after picking, black tea is fully oxidised, and oolong sits in between. Most tea today comes from China and India.", "feedback": -1}
+{"id": "summarise-email", "set": "main", "prompt": "Summarize this email: Hi all, the office will be closed on Monday for maintenance. Please work from home and make sure your laptops are charged. The help desk will be reachable by phone as usual."}
+{"id": "translate-french", "set": "main", "prompt": "Translate into French: Good morning, the meeting starts at nine.", "feedback": 1}
+{"id": "translate-spanish", "set": "main", "prompt": "Translate into Spanish: Where is the nearest train station?", "feedback": 1}
+{"id": "translate-german", "set": "main", "prompt": "Translate this sentence into German: The library opens at ten on Saturdays."}
+{"id": "extract-dates", "set": "main", "prompt": "Extract all the people and dates from this text: Alice met Bob on 3 March 2024 in Paris, and they signed the lease with Carol on 12 April.", "feedback": 1}
+{"id": "extract-sentiment", "set": "main", "prompt": "Classify the sentiment of each review as positive or negative: 1) Great battery life. 2) The screen cracked after a week.", "feedback": -1}
+{"id": "extract-list", "set": "main", "prompt": "List all the fruits mentioned: We bought apples, bread, two pears, milk and a bunch of bananas."}
+{"id": "creative-poem", "set": "main", "prompt": "Write a short poem about autumn leaves falling in the park.", "feedback": 1}
+{"id": "creative-slogan", "set": "main", "prompt": "Write a slogan for a neighbourhood bicycle repair cafe.", "feedback": 1}
+{"id": "creative-haiku", "set": "main", "prompt": "Write a haiku about a quiet train station at night."}
+{"id": "code-bug", "set": "main", "prompt": "Fix the bug in this function:\n```python\ndef average(values):\n    return sum(values) / len(values) + 1\n```", "feedback": 1}
+{"id": "code-regex", "set": "main", "prompt": "Write a Python function that checks whether a string is a valid hexadecimal colour code.", "feedback": 1}
+{"id": "code-sql", "set": "main", "prompt": "Write a SQL query that returns the ten customers with the highest total order value.", "feedback": -1}
+{"id": "code-refactor", "set": "main", "prompt": "Refactor this JavaScript to use async/await:\n```javascript\nfetch(url).then(r => r.json()).then(data => console.log(data));\n```"}
+{"id": "math-solve", "set": "main", "prompt": "Solve for x: 3x + 7 = 22, and explain why each step works.", "feedback": 1}
+{"id": "math-probability", "set": "main", "prompt": "Calculate the probability of rolling two sixes with two fair dice, step by step.", "feedback": 1}
+{"id": "math-derivative", "set": "main", "prompt": "Compute the derivative of x^3 * sin(x) and justify each rule you use."}
+{"id": "analysis-databases", "set": "main", "prompt": "Compare Postgres and MongoDB for event sourcing, step by step.", "feedback": 1}
+{"id": "analysis-strategy", "set": "main", "prompt": "Design a migration strategy from a monolith to services for a small team. What are the trade-offs and edge cases?", "feedback": 1}
+{"id": "analysis-cache", "set": "main", "prompt": "Evaluate the pros and cons of caching LLM responses, and recommend a plan for a small API.", "feedback": -1}
+{"id": "privacy-email", "set": "main", "prompt": "Rewrite this note to jane.doe@example.com so it sounds friendlier: send me the report by Friday.", "feedback": 1, "note": "fictional email; masked in the stored preview"}
+{"id": "privacy-phone", "set": "main", "prompt": "Summarise this message: Call Sam on +1 555-010-0199 about the delivery window tomorrow.", "note": "fictional 555 number; masked in the stored preview"}
+{"id": "forced-local-analysis", "set": "main", "prompt": "Compare REST and GraphQL for a public API, step by step.", "tier": "local", "feedback": -1, "note": "forced local despite a premium score"}
+{"id": "forced-premium-chitchat", "set": "main", "prompt": "Hello there!", "tier": "premium", "feedback": 1, "note": "forced premium despite a local score"}
+{"id": "fallback-hello", "set": "fallback", "prompt": "Hi! Are you there?", "feedback": 1, "note": "run while the local backend is stopped"}
+{"id": "fallback-capital", "set": "fallback", "prompt": "What is the capital of Japan?"}
+{"id": "fallback-translate", "set": "fallback", "prompt": "Translate into Italian: See you tomorrow.", "feedback": -1}
+{"id": "fallback-rewrite", "set": "fallback", "prompt": "Rewrite this so it sounds friendlier: Send the file now."}

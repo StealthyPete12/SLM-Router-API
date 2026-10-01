@@ -1,0 +1,71 @@
+# Model catalog: tier, endpoint, prices, context window and capabilities.
+# Nothing here is hardcoded in the app; edit this file to change models.
+#
+# `${VAR:-default}` is expanded from the environment when the file is loaded,
+# so OLLAMA_BASE_URL can point the API at a native Ollama (e.g. on a Mac) and
+# the premium model is chosen in .env without editing this file. LOCAL_PROVIDER
+# only changes the label stored with each answer: docker-compose.offline.yml sets
+# it to `mock`, so simulated local answers can never pass for real ones.
+#
+# Fields:
+#   id                  router-facing model ID (what clients send as `model`)
+#   provider            label shown in errors and /health
+#   tier                local | premium
+#   base_url            OpenAI-compatible endpoint (…/v1)
+#   model               provider-facing model name; empty = not configured yet
+#   api_key_env         NAME of the environment variable holding the key (never the key)
+#   context_window      tokens the model accepts; local ones must match OLLAMA_CONTEXT_LENGTH
+#   usd_per_1m_input    price per million input tokens; null = not priced yet
+#   usd_per_1m_output   price per million output tokens; null = not priced yet
+#   priced_on           date the prices were copied; required when a premium price is set
+#   capabilities        features the model supports: chat, json_mode, tools
+
+baseline: premium-default          # savings are measured against this model
+
+models:
+  - id: phi3-mini
+    provider: ${LOCAL_PROVIDER:-ollama}
+    tier: local
+    base_url: ${OLLAMA_BASE_URL:-http://ollama:11434}/v1
+    model: phi3:mini
+    context_window: 8192
+    usd_per_1m_input: 0
+    usd_per_1m_output: 0
+    capabilities: [chat, json_mode]
+
+  - id: llama3-8b
+    provider: ${LOCAL_PROVIDER:-ollama}
+    tier: local
+    base_url: ${OLLAMA_BASE_URL:-http://ollama:11434}/v1
+    model: llama3.1:8b
+    context_window: 8192
+    usd_per_1m_input: 0
+    usd_per_1m_output: 0
+    capabilities: [chat, json_mode]
+
+  - id: mistral-7b
+    provider: ${LOCAL_PROVIDER:-ollama}
+    tier: local
+    base_url: ${OLLAMA_BASE_URL:-http://ollama:11434}/v1
+    model: mistral:7b
+    context_window: 8192
+    usd_per_1m_input: 0
+    usd_per_1m_output: 0
+    capabilities: [chat, json_mode]
+
+  # One premium cloud model, reached through its OpenAI-compatible API (OpenAI,
+  # Gemini or Anthropic's compatibility layer). No model ID or price is
+  # hardcoded: set PREMIUM_MODEL from the provider's docs in .env, and the prices
+  # and the date you copied them from its pricing page. Unpriced, cost and
+  # savings are stored as unknown (NULL), never guessed.
+  - id: premium-default
+    provider: ${PREMIUM_PROVIDER:-openai}
+    tier: premium
+    base_url: ${PREMIUM_BASE_URL:-https://api.openai.com/v1}
+    model: ${PREMIUM_MODEL:-}
+    api_key_env: PREMIUM_API_KEY
+    context_window: 128000           # conservative; check against the model docs
+    usd_per_1m_input: ${PREMIUM_USD_PER_1M_INPUT:-}
+    usd_per_1m_output: ${PREMIUM_USD_PER_1M_OUTPUT:-}
+    priced_on: ${PREMIUM_PRICED_ON:-}
+    capabilities: [chat, json_mode, tools]

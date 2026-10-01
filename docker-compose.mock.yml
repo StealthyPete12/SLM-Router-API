@@ -1,0 +1,39 @@
+# Overlay: a MOCK premium model instead of a real cloud provider. DEVELOPMENT ONLY.
+#   docker compose -f docker-compose.yml -f docker-compose.mock.yml up -d
+# or set STACK_MODE=mock in .env and use `make up`.
+#
+# Local answers still come from the real Ollama. Premium answers come from
+# app/devtools/mock_llm.py: simulated text and latency, labelled as such in every
+# answer, and stored with provider = mock. The prices below are illustrative
+# placeholders, not any provider's price list, so the savings they produce are
+# not real savings. Never quote numbers from this mode as results.
+services:
+  mock-cloud:
+    build: .
+    command: ["uvicorn", "app.devtools.mock_llm:create_app", "--factory", "--host", "0.0.0.0", "--port", "8080"]
+    environment:
+      MOCK_TIER: premium
+      MOCK_MODELS: mock-premium
+      MOCK_DELAY_MS: ${MOCK_PREMIUM_DELAY_MS:-700}
+      MOCK_MS_PER_TOKEN: ${MOCK_PREMIUM_MS_PER_TOKEN:-6}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 6
+      start_period: 5s
+    restart: unless-stopped
+
+  api:
+    environment:
+      PREMIUM_PROVIDER: mock
+      PREMIUM_BASE_URL: http://mock-cloud:8080/v1
+      PREMIUM_MODEL: mock-premium
+      PREMIUM_API_KEY: mock-key-not-a-secret
+      # Illustrative placeholder prices for the mock model (USD per 1M tokens).
+      PREMIUM_USD_PER_1M_INPUT: ${MOCK_USD_PER_1M_INPUT:-2.00}
+      PREMIUM_USD_PER_1M_OUTPUT: ${MOCK_USD_PER_1M_OUTPUT:-8.00}
+      PREMIUM_PRICED_ON: "2026-10-01"
+    depends_on:
+      mock-cloud:
+        condition: service_healthy

@@ -1,0 +1,3340 @@
+{
+  "kind": "threshold_sweep",
+  "generated_at": "2026-10-01T11:43:35+00:00",
+  "version": "803417e-dirty",
+  "dataset": {
+    "path": "prompts.jsonl",
+    "sha256": "69e43184ce912249bd0ae4447f60a1863d7b156c05c926c7812537cce5b89fc7"
+  },
+  "config": {
+    "routing_yaml_sha256": "2a50d3f45ed617422526131c5f000d2662fd345097e03a064c61c6e7ba031ffc",
+    "configured_threshold": 30,
+    "baseline_model": "premium-default",
+    "baseline_priced": false
+  },
+  "rule": {
+    "miss_rate_tolerance_pp": 5.0,
+    "under_routing_weight": 2
+  },
+  "thresholds": [
+    {
+      "threshold": 20,
+      "n": 159,
+      "correct": 106,
+      "accuracy_pct": 66.67,
+      "under_count": 13,
+      "under_pct": 8.18,
+      "miss_rate_pct": 28.26,
+      "over_count": 40,
+      "over_pct": 25.16,
+      "waste_rate_pct": 35.4,
+      "local_count": 86,
+      "local_share_pct": 54.09,
+      "premium_share_pct": 45.91,
+      "savings_pct": 11.81,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 66,
+      "near_threshold": 44,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 11,
+          "under": 0,
+          "over": 1,
+          "accuracy_pct": 91.67
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 8,
+          "under": 0,
+          "over": 7,
+          "accuracy_pct": 53.33
+        },
+        "translate": {
+          "n": 12,
+          "correct": 7,
+          "under": 3,
+          "over": 2,
+          "accuracy_pct": 58.33
+        },
+        "extract": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "creative": {
+          "n": 15,
+          "correct": 5,
+          "under": 2,
+          "over": 8,
+          "accuracy_pct": 33.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 12,
+          "under": 0,
+          "over": 9,
+          "accuracy_pct": 57.14
+        },
+        "math": {
+          "n": 17,
+          "correct": 9,
+          "under": 4,
+          "over": 4,
+          "accuracy_pct": 52.94
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 102,
+          "under": 13,
+          "over": 40,
+          "accuracy_pct": 65.81
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 25,
+        "under": 9,
+        "over": 28,
+        "accuracy_pct": 40.32
+      },
+      "confusion": {
+        "local": {
+          "local": 73,
+          "premium": 40
+        },
+        "premium": {
+          "local": 13,
+          "premium": 33
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 21,
+      "n": 159,
+      "correct": 111,
+      "accuracy_pct": 69.81,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 30,
+      "over_pct": 18.87,
+      "waste_rate_pct": 26.55,
+      "local_count": 101,
+      "local_share_pct": 63.52,
+      "premium_share_pct": 36.48,
+      "savings_pct": 16.48,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 66,
+      "near_threshold": 15,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 10,
+          "under": 0,
+          "over": 5,
+          "accuracy_pct": 66.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 7,
+          "under": 3,
+          "over": 2,
+          "accuracy_pct": 58.33
+        },
+        "extract": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 107,
+          "under": 18,
+          "over": 30,
+          "accuracy_pct": 69.03
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 24,
+        "under": 12,
+        "over": 26,
+        "accuracy_pct": 38.71
+      },
+      "confusion": {
+        "local": {
+          "local": 83,
+          "premium": 30
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 22,
+      "n": 159,
+      "correct": 111,
+      "accuracy_pct": 69.81,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 30,
+      "over_pct": 18.87,
+      "waste_rate_pct": 26.55,
+      "local_count": 101,
+      "local_share_pct": 63.52,
+      "premium_share_pct": 36.48,
+      "savings_pct": 16.48,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 66,
+      "near_threshold": 15,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 10,
+          "under": 0,
+          "over": 5,
+          "accuracy_pct": 66.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 7,
+          "under": 3,
+          "over": 2,
+          "accuracy_pct": 58.33
+        },
+        "extract": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 107,
+          "under": 18,
+          "over": 30,
+          "accuracy_pct": 69.03
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 24,
+        "under": 12,
+        "over": 26,
+        "accuracy_pct": 38.71
+      },
+      "confusion": {
+        "local": {
+          "local": 83,
+          "premium": 30
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 23,
+      "n": 159,
+      "correct": 111,
+      "accuracy_pct": 69.81,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 30,
+      "over_pct": 18.87,
+      "waste_rate_pct": 26.55,
+      "local_count": 101,
+      "local_share_pct": 63.52,
+      "premium_share_pct": 36.48,
+      "savings_pct": 16.48,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 66,
+      "near_threshold": 15,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 10,
+          "under": 0,
+          "over": 5,
+          "accuracy_pct": 66.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 7,
+          "under": 3,
+          "over": 2,
+          "accuracy_pct": 58.33
+        },
+        "extract": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 107,
+          "under": 18,
+          "over": 30,
+          "accuracy_pct": 69.03
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 24,
+        "under": 12,
+        "over": 26,
+        "accuracy_pct": 38.71
+      },
+      "confusion": {
+        "local": {
+          "local": 83,
+          "premium": 30
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 24,
+      "n": 159,
+      "correct": 111,
+      "accuracy_pct": 69.81,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 30,
+      "over_pct": 18.87,
+      "waste_rate_pct": 26.55,
+      "local_count": 101,
+      "local_share_pct": 63.52,
+      "premium_share_pct": 36.48,
+      "savings_pct": 16.48,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 66,
+      "near_threshold": 15,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 10,
+          "under": 0,
+          "over": 5,
+          "accuracy_pct": 66.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 7,
+          "under": 3,
+          "over": 2,
+          "accuracy_pct": 58.33
+        },
+        "extract": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 107,
+          "under": 18,
+          "over": 30,
+          "accuracy_pct": 69.03
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 24,
+        "under": 12,
+        "over": 26,
+        "accuracy_pct": 38.71
+      },
+      "confusion": {
+        "local": {
+          "local": 83,
+          "premium": 30
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 25,
+      "n": 159,
+      "correct": 111,
+      "accuracy_pct": 69.81,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 30,
+      "over_pct": 18.87,
+      "waste_rate_pct": 26.55,
+      "local_count": 101,
+      "local_share_pct": 63.52,
+      "premium_share_pct": 36.48,
+      "savings_pct": 16.48,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 66,
+      "near_threshold": 18,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 10,
+          "under": 0,
+          "over": 5,
+          "accuracy_pct": 66.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 7,
+          "under": 3,
+          "over": 2,
+          "accuracy_pct": 58.33
+        },
+        "extract": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 107,
+          "under": 18,
+          "over": 30,
+          "accuracy_pct": 69.03
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 24,
+        "under": 12,
+        "over": 26,
+        "accuracy_pct": 38.71
+      },
+      "confusion": {
+        "local": {
+          "local": 83,
+          "premium": 30
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 26,
+      "n": 159,
+      "correct": 114,
+      "accuracy_pct": 71.7,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 27,
+      "over_pct": 16.98,
+      "waste_rate_pct": 23.89,
+      "local_count": 104,
+      "local_share_pct": 65.41,
+      "premium_share_pct": 34.59,
+      "savings_pct": 17.18,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 63,
+      "near_threshold": 3,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 11,
+          "under": 0,
+          "over": 4,
+          "accuracy_pct": 73.33
+        },
+        "translate": {
+          "n": 12,
+          "correct": 8,
+          "under": 3,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 110,
+          "under": 18,
+          "over": 27,
+          "accuracy_pct": 70.97
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 26,
+        "under": 12,
+        "over": 24,
+        "accuracy_pct": 41.94
+      },
+      "confusion": {
+        "local": {
+          "local": 86,
+          "premium": 27
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 27,
+      "n": 159,
+      "correct": 114,
+      "accuracy_pct": 71.7,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 27,
+      "over_pct": 16.98,
+      "waste_rate_pct": 23.89,
+      "local_count": 104,
+      "local_share_pct": 65.41,
+      "premium_share_pct": 34.59,
+      "savings_pct": 17.18,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 63,
+      "near_threshold": 3,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 11,
+          "under": 0,
+          "over": 4,
+          "accuracy_pct": 73.33
+        },
+        "translate": {
+          "n": 12,
+          "correct": 8,
+          "under": 3,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 110,
+          "under": 18,
+          "over": 27,
+          "accuracy_pct": 70.97
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 26,
+        "under": 12,
+        "over": 24,
+        "accuracy_pct": 41.94
+      },
+      "confusion": {
+        "local": {
+          "local": 86,
+          "premium": 27
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 28,
+      "n": 159,
+      "correct": 114,
+      "accuracy_pct": 71.7,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 27,
+      "over_pct": 16.98,
+      "waste_rate_pct": 23.89,
+      "local_count": 104,
+      "local_share_pct": 65.41,
+      "premium_share_pct": 34.59,
+      "savings_pct": 17.18,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 63,
+      "near_threshold": 3,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 11,
+          "under": 0,
+          "over": 4,
+          "accuracy_pct": 73.33
+        },
+        "translate": {
+          "n": 12,
+          "correct": 8,
+          "under": 3,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 110,
+          "under": 18,
+          "over": 27,
+          "accuracy_pct": 70.97
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 26,
+        "under": 12,
+        "over": 24,
+        "accuracy_pct": 41.94
+      },
+      "confusion": {
+        "local": {
+          "local": 86,
+          "premium": 27
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 29,
+      "n": 159,
+      "correct": 114,
+      "accuracy_pct": 71.7,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 27,
+      "over_pct": 16.98,
+      "waste_rate_pct": 23.89,
+      "local_count": 104,
+      "local_share_pct": 65.41,
+      "premium_share_pct": 34.59,
+      "savings_pct": 17.18,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 63,
+      "near_threshold": 3,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 11,
+          "under": 0,
+          "over": 4,
+          "accuracy_pct": 73.33
+        },
+        "translate": {
+          "n": 12,
+          "correct": 8,
+          "under": 3,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 110,
+          "under": 18,
+          "over": 27,
+          "accuracy_pct": 70.97
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 26,
+        "under": 12,
+        "over": 24,
+        "accuracy_pct": 41.94
+      },
+      "confusion": {
+        "local": {
+          "local": 86,
+          "premium": 27
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 30,
+      "n": 159,
+      "correct": 114,
+      "accuracy_pct": 71.7,
+      "under_count": 18,
+      "under_pct": 11.32,
+      "miss_rate_pct": 39.13,
+      "over_count": 27,
+      "over_pct": 16.98,
+      "waste_rate_pct": 23.89,
+      "local_count": 104,
+      "local_share_pct": 65.41,
+      "premium_share_pct": 34.59,
+      "savings_pct": 17.18,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 63,
+      "near_threshold": 9,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 11,
+          "under": 0,
+          "over": 4,
+          "accuracy_pct": 73.33
+        },
+        "translate": {
+          "n": 12,
+          "correct": 8,
+          "under": 3,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 10,
+          "under": 4,
+          "over": 1,
+          "accuracy_pct": 66.67
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 110,
+          "under": 18,
+          "over": 27,
+          "accuracy_pct": 70.97
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 26,
+        "under": 12,
+        "over": 24,
+        "accuracy_pct": 41.94
+      },
+      "confusion": {
+        "local": {
+          "local": 86,
+          "premium": 27
+        },
+        "premium": {
+          "local": 18,
+          "premium": 28
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 31,
+      "n": 159,
+      "correct": 117,
+      "accuracy_pct": 73.58,
+      "under_count": 19,
+      "under_pct": 11.95,
+      "miss_rate_pct": 41.3,
+      "over_count": 23,
+      "over_pct": 14.47,
+      "waste_rate_pct": 20.35,
+      "local_count": 109,
+      "local_share_pct": 68.55,
+      "premium_share_pct": 31.45,
+      "savings_pct": 22.33,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 61,
+      "near_threshold": 6,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 112,
+          "under": 19,
+          "over": 23,
+          "accuracy_pct": 72.73
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 30,
+        "under": 12,
+        "over": 20,
+        "accuracy_pct": 48.39
+      },
+      "confusion": {
+        "local": {
+          "local": 90,
+          "premium": 23
+        },
+        "premium": {
+          "local": 19,
+          "premium": 27
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 32,
+      "n": 159,
+      "correct": 117,
+      "accuracy_pct": 73.58,
+      "under_count": 19,
+      "under_pct": 11.95,
+      "miss_rate_pct": 41.3,
+      "over_count": 23,
+      "over_pct": 14.47,
+      "waste_rate_pct": 20.35,
+      "local_count": 109,
+      "local_share_pct": 68.55,
+      "premium_share_pct": 31.45,
+      "savings_pct": 22.33,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 61,
+      "near_threshold": 6,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 112,
+          "under": 19,
+          "over": 23,
+          "accuracy_pct": 72.73
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 30,
+        "under": 12,
+        "over": 20,
+        "accuracy_pct": 48.39
+      },
+      "confusion": {
+        "local": {
+          "local": 90,
+          "premium": 23
+        },
+        "premium": {
+          "local": 19,
+          "premium": 27
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 33,
+      "n": 159,
+      "correct": 117,
+      "accuracy_pct": 73.58,
+      "under_count": 19,
+      "under_pct": 11.95,
+      "miss_rate_pct": 41.3,
+      "over_count": 23,
+      "over_pct": 14.47,
+      "waste_rate_pct": 20.35,
+      "local_count": 109,
+      "local_share_pct": 68.55,
+      "premium_share_pct": 31.45,
+      "savings_pct": 22.33,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 61,
+      "near_threshold": 6,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 112,
+          "under": 19,
+          "over": 23,
+          "accuracy_pct": 72.73
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 30,
+        "under": 12,
+        "over": 20,
+        "accuracy_pct": 48.39
+      },
+      "confusion": {
+        "local": {
+          "local": 90,
+          "premium": 23
+        },
+        "premium": {
+          "local": 19,
+          "premium": 27
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 34,
+      "n": 159,
+      "correct": 117,
+      "accuracy_pct": 73.58,
+      "under_count": 19,
+      "under_pct": 11.95,
+      "miss_rate_pct": 41.3,
+      "over_count": 23,
+      "over_pct": 14.47,
+      "waste_rate_pct": 20.35,
+      "local_count": 109,
+      "local_share_pct": 68.55,
+      "premium_share_pct": 31.45,
+      "savings_pct": 22.33,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 61,
+      "near_threshold": 6,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 112,
+          "under": 19,
+          "over": 23,
+          "accuracy_pct": 72.73
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 30,
+        "under": 12,
+        "over": 20,
+        "accuracy_pct": 48.39
+      },
+      "confusion": {
+        "local": {
+          "local": 90,
+          "premium": 23
+        },
+        "premium": {
+          "local": 19,
+          "premium": 27
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 35,
+      "n": 159,
+      "correct": 117,
+      "accuracy_pct": 73.58,
+      "under_count": 19,
+      "under_pct": 11.95,
+      "miss_rate_pct": 41.3,
+      "over_count": 23,
+      "over_pct": 14.47,
+      "waste_rate_pct": 20.35,
+      "local_count": 109,
+      "local_share_pct": 68.55,
+      "premium_share_pct": 31.45,
+      "savings_pct": 22.33,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 61,
+      "near_threshold": 24,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 13,
+          "under": 2,
+          "over": 2,
+          "accuracy_pct": 76.47
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 12,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 85.71
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 11,
+          "under": 1,
+          "over": 9,
+          "accuracy_pct": 52.38
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 16,
+          "under": 1,
+          "over": 4,
+          "accuracy_pct": 76.19
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 112,
+          "under": 19,
+          "over": 23,
+          "accuracy_pct": 72.73
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 30,
+        "under": 12,
+        "over": 20,
+        "accuracy_pct": 48.39
+      },
+      "confusion": {
+        "local": {
+          "local": 90,
+          "premium": 23
+        },
+        "premium": {
+          "local": 19,
+          "premium": 27
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 36,
+      "n": 159,
+      "correct": 125,
+      "accuracy_pct": 78.62,
+      "under_count": 24,
+      "under_pct": 15.09,
+      "miss_rate_pct": 52.17,
+      "over_count": 10,
+      "over_pct": 6.29,
+      "waste_rate_pct": 8.85,
+      "local_count": 127,
+      "local_share_pct": 79.87,
+      "premium_share_pct": 20.13,
+      "savings_pct": 35.25,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 58,
+      "near_threshold": 18,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 14,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 93.33
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 15,
+          "under": 6,
+          "over": 0,
+          "accuracy_pct": 71.43
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 17,
+          "under": 1,
+          "over": 3,
+          "accuracy_pct": 80.95
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 120,
+          "under": 24,
+          "over": 10,
+          "accuracy_pct": 77.92
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 40,
+        "under": 12,
+        "over": 10,
+        "accuracy_pct": 64.52
+      },
+      "confusion": {
+        "local": {
+          "local": 103,
+          "premium": 10
+        },
+        "premium": {
+          "local": 24,
+          "premium": 22
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 37,
+      "n": 159,
+      "correct": 125,
+      "accuracy_pct": 78.62,
+      "under_count": 24,
+      "under_pct": 15.09,
+      "miss_rate_pct": 52.17,
+      "over_count": 10,
+      "over_pct": 6.29,
+      "waste_rate_pct": 8.85,
+      "local_count": 127,
+      "local_share_pct": 79.87,
+      "premium_share_pct": 20.13,
+      "savings_pct": 35.25,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 58,
+      "near_threshold": 18,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 14,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 93.33
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 15,
+          "under": 6,
+          "over": 0,
+          "accuracy_pct": 71.43
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 17,
+          "under": 1,
+          "over": 3,
+          "accuracy_pct": 80.95
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 120,
+          "under": 24,
+          "over": 10,
+          "accuracy_pct": 77.92
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 40,
+        "under": 12,
+        "over": 10,
+        "accuracy_pct": 64.52
+      },
+      "confusion": {
+        "local": {
+          "local": 103,
+          "premium": 10
+        },
+        "premium": {
+          "local": 24,
+          "premium": 22
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 38,
+      "n": 159,
+      "correct": 125,
+      "accuracy_pct": 78.62,
+      "under_count": 24,
+      "under_pct": 15.09,
+      "miss_rate_pct": 52.17,
+      "over_count": 10,
+      "over_pct": 6.29,
+      "waste_rate_pct": 8.85,
+      "local_count": 127,
+      "local_share_pct": 79.87,
+      "premium_share_pct": 20.13,
+      "savings_pct": 35.25,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 58,
+      "near_threshold": 18,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 14,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 93.33
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 15,
+          "under": 6,
+          "over": 0,
+          "accuracy_pct": 71.43
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 17,
+          "under": 1,
+          "over": 3,
+          "accuracy_pct": 80.95
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 120,
+          "under": 24,
+          "over": 10,
+          "accuracy_pct": 77.92
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 40,
+        "under": 12,
+        "over": 10,
+        "accuracy_pct": 64.52
+      },
+      "confusion": {
+        "local": {
+          "local": 103,
+          "premium": 10
+        },
+        "premium": {
+          "local": 24,
+          "premium": 22
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 39,
+      "n": 159,
+      "correct": 125,
+      "accuracy_pct": 78.62,
+      "under_count": 24,
+      "under_pct": 15.09,
+      "miss_rate_pct": 52.17,
+      "over_count": 10,
+      "over_pct": 6.29,
+      "waste_rate_pct": 8.85,
+      "local_count": 127,
+      "local_share_pct": 79.87,
+      "premium_share_pct": 20.13,
+      "savings_pct": 35.25,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 58,
+      "near_threshold": 18,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 14,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 93.33
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 15,
+          "under": 6,
+          "over": 0,
+          "accuracy_pct": 71.43
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 17,
+          "under": 1,
+          "over": 3,
+          "accuracy_pct": 80.95
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 120,
+          "under": 24,
+          "over": 10,
+          "accuracy_pct": 77.92
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 40,
+        "under": 12,
+        "over": 10,
+        "accuracy_pct": 64.52
+      },
+      "confusion": {
+        "local": {
+          "local": 103,
+          "premium": 10
+        },
+        "premium": {
+          "local": 24,
+          "premium": 22
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 40,
+      "n": 159,
+      "correct": 125,
+      "accuracy_pct": 78.62,
+      "under_count": 24,
+      "under_pct": 15.09,
+      "miss_rate_pct": 52.17,
+      "over_count": 10,
+      "over_pct": 6.29,
+      "waste_rate_pct": 8.85,
+      "local_count": 127,
+      "local_share_pct": 79.87,
+      "premium_share_pct": 20.13,
+      "savings_pct": 35.25,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 58,
+      "near_threshold": 41,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 12,
+          "under": 1,
+          "over": 2,
+          "accuracy_pct": 80.0
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 14,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 93.33
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 15,
+          "under": 6,
+          "over": 0,
+          "accuracy_pct": 71.43
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 5,
+          "over": 4,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 17,
+          "under": 1,
+          "over": 3,
+          "accuracy_pct": 80.95
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 154,
+          "correct": 120,
+          "under": 24,
+          "over": 10,
+          "accuracy_pct": 77.92
+        },
+        "hard_rule": {
+          "n": 5,
+          "correct": 5,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 40,
+        "under": 12,
+        "over": 10,
+        "accuracy_pct": 64.52
+      },
+      "confusion": {
+        "local": {
+          "local": 103,
+          "premium": 10
+        },
+        "premium": {
+          "local": 24,
+          "premium": 22
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 41,
+      "n": 159,
+      "correct": 119,
+      "accuracy_pct": 74.84,
+      "under_count": 37,
+      "under_pct": 23.27,
+      "miss_rate_pct": 80.43,
+      "over_count": 3,
+      "over_pct": 1.89,
+      "waste_rate_pct": 2.65,
+      "local_count": 147,
+      "local_share_pct": 92.45,
+      "premium_share_pct": 7.55,
+      "savings_pct": 39.93,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 77,
+      "near_threshold": 23,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 2,
+          "over": 0,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 12,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 57.14
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 14,
+          "under": 6,
+          "over": 1,
+          "accuracy_pct": 66.67
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 115,
+          "under": 37,
+          "over": 3,
+          "accuracy_pct": 74.19
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 41,
+        "under": 18,
+        "over": 3,
+        "accuracy_pct": 66.13
+      },
+      "confusion": {
+        "local": {
+          "local": 110,
+          "premium": 3
+        },
+        "premium": {
+          "local": 37,
+          "premium": 9
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 42,
+      "n": 159,
+      "correct": 119,
+      "accuracy_pct": 74.84,
+      "under_count": 37,
+      "under_pct": 23.27,
+      "miss_rate_pct": 80.43,
+      "over_count": 3,
+      "over_pct": 1.89,
+      "waste_rate_pct": 2.65,
+      "local_count": 147,
+      "local_share_pct": 92.45,
+      "premium_share_pct": 7.55,
+      "savings_pct": 39.93,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 77,
+      "near_threshold": 23,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 2,
+          "over": 0,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 12,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 57.14
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 14,
+          "under": 6,
+          "over": 1,
+          "accuracy_pct": 66.67
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 115,
+          "under": 37,
+          "over": 3,
+          "accuracy_pct": 74.19
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 41,
+        "under": 18,
+        "over": 3,
+        "accuracy_pct": 66.13
+      },
+      "confusion": {
+        "local": {
+          "local": 110,
+          "premium": 3
+        },
+        "premium": {
+          "local": 37,
+          "premium": 9
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 43,
+      "n": 159,
+      "correct": 119,
+      "accuracy_pct": 74.84,
+      "under_count": 37,
+      "under_pct": 23.27,
+      "miss_rate_pct": 80.43,
+      "over_count": 3,
+      "over_pct": 1.89,
+      "waste_rate_pct": 2.65,
+      "local_count": 147,
+      "local_share_pct": 92.45,
+      "premium_share_pct": 7.55,
+      "savings_pct": 39.93,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 77,
+      "near_threshold": 23,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 2,
+          "over": 0,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 12,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 57.14
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 14,
+          "under": 6,
+          "over": 1,
+          "accuracy_pct": 66.67
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 115,
+          "under": 37,
+          "over": 3,
+          "accuracy_pct": 74.19
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 41,
+        "under": 18,
+        "over": 3,
+        "accuracy_pct": 66.13
+      },
+      "confusion": {
+        "local": {
+          "local": 110,
+          "premium": 3
+        },
+        "premium": {
+          "local": 37,
+          "premium": 9
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 44,
+      "n": 159,
+      "correct": 119,
+      "accuracy_pct": 74.84,
+      "under_count": 37,
+      "under_pct": 23.27,
+      "miss_rate_pct": 80.43,
+      "over_count": 3,
+      "over_pct": 1.89,
+      "waste_rate_pct": 2.65,
+      "local_count": 147,
+      "local_share_pct": 92.45,
+      "premium_share_pct": 7.55,
+      "savings_pct": 39.93,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 77,
+      "near_threshold": 23,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 2,
+          "over": 0,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 12,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 57.14
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 14,
+          "under": 6,
+          "over": 1,
+          "accuracy_pct": 66.67
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 115,
+          "under": 37,
+          "over": 3,
+          "accuracy_pct": 74.19
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 41,
+        "under": 18,
+        "over": 3,
+        "accuracy_pct": 66.13
+      },
+      "confusion": {
+        "local": {
+          "local": 110,
+          "premium": 3
+        },
+        "premium": {
+          "local": 37,
+          "premium": 9
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    },
+    {
+      "threshold": 45,
+      "n": 159,
+      "correct": 119,
+      "accuracy_pct": 74.84,
+      "under_count": 37,
+      "under_pct": 23.27,
+      "miss_rate_pct": 80.43,
+      "over_count": 3,
+      "over_pct": 1.89,
+      "waste_rate_pct": 2.65,
+      "local_count": 147,
+      "local_share_pct": 92.45,
+      "premium_share_pct": 7.55,
+      "savings_pct": 39.93,
+      "savings_basis": "token_share",
+      "savings_usd": null,
+      "baseline_usd": null,
+      "weighted_errors": 77,
+      "near_threshold": 29,
+      "by_task": {
+        "chitchat": {
+          "n": 12,
+          "correct": 12,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        },
+        "qa": {
+          "n": 17,
+          "correct": 14,
+          "under": 2,
+          "over": 1,
+          "accuracy_pct": 82.35
+        },
+        "rewrite": {
+          "n": 14,
+          "correct": 13,
+          "under": 1,
+          "over": 0,
+          "accuracy_pct": 92.86
+        },
+        "summarise": {
+          "n": 15,
+          "correct": 13,
+          "under": 1,
+          "over": 1,
+          "accuracy_pct": 86.67
+        },
+        "translate": {
+          "n": 12,
+          "correct": 9,
+          "under": 3,
+          "over": 0,
+          "accuracy_pct": 75.0
+        },
+        "extract": {
+          "n": 15,
+          "correct": 13,
+          "under": 2,
+          "over": 0,
+          "accuracy_pct": 86.67
+        },
+        "creative": {
+          "n": 15,
+          "correct": 11,
+          "under": 4,
+          "over": 0,
+          "accuracy_pct": 73.33
+        },
+        "code": {
+          "n": 21,
+          "correct": 12,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 57.14
+        },
+        "math": {
+          "n": 17,
+          "correct": 8,
+          "under": 9,
+          "over": 0,
+          "accuracy_pct": 47.06
+        },
+        "analysis": {
+          "n": 21,
+          "correct": 14,
+          "under": 6,
+          "over": 1,
+          "accuracy_pct": 66.67
+        }
+      },
+      "by_decider": {
+        "threshold": {
+          "n": 155,
+          "correct": 115,
+          "under": 37,
+          "over": 3,
+          "accuracy_pct": 74.19
+        },
+        "hard_rule": {
+          "n": 4,
+          "correct": 4,
+          "under": 0,
+          "over": 0,
+          "accuracy_pct": 100.0
+        }
+      },
+      "borderline": {
+        "n": 62,
+        "correct": 41,
+        "under": 18,
+        "over": 3,
+        "accuracy_pct": 66.13
+      },
+      "confusion": {
+        "local": {
+          "local": 110,
+          "premium": 3
+        },
+        "premium": {
+          "local": 37,
+          "premium": 9
+        }
+      },
+      "classifier_agreement_pct": 71.7
+    }
+  ],
+  "selection": {
+    "threshold": 20,
+    "eligible": [
+      20
+    ],
+    "plateau": [
+      20
+    ],
+    "miss_rate_floor_pct": 28.26,
+    "miss_rate_ceiling_pct": 33.26,
+    "explanation": [
+      "Lowest miss rate in the sweep: 28.3% of premium prompts; eligible thresholds keep it at or below 33.3% (+5 percentage points).",
+      "Eligible: 20.",
+      "Fewest weighted errors (2 x under + over) among them: 66 at threshold 20 (13 under-routed, 40 over-routed).",
+      "Thresholds 20-20 route every prompt identically; 20 is reported for that plateau."
+    ]
+  }
+}

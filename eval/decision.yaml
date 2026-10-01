@@ -1,0 +1,57 @@
+# Threshold decision record. Written by a person after reading the sweep
+# (eval/results/sweep.json); docs/results.md quotes it and flags it as stale when
+# the dataset, the sweep's automated pick or routing.yaml no longer match it.
+# Change the threshold in config/routing.yaml and here together.
+
+decided_on: 2026-10-01
+dataset_sha256: 69e43184ce912249bd0ae4447f60a1863d7b156c05c926c7812537cce5b89fc7
+previous_threshold: 30
+selected_threshold: 30
+# What the pre-registered rule in eval/metrics.py chose (select_threshold).
+rule_selected: 20
+decision: Keep 30. The automated rule's pick (20) is overridden; see reasons.
+reasons:
+  - >-
+    Under-routing is the priority, but 20 buys little of it: it catches 5 more of the
+    46 premium prompts (miss rate 39.1% -> 28.3%) by sending 13 more local prompts to
+    premium, cutting the local share from 65.4% to 54.1% and estimated savings from
+    17.2% to 11.8%.
+  - >-
+    Even with under-routing weighted double, 30 has fewer weighted errors than 20
+    (63 vs 66). The rule only chose 20 because its hard miss-rate ceiling (lowest + 5
+    points) admits no other plateau: each 5-point step moves several prompts at once,
+    so the ceiling was stricter than intended. That is a flaw in the rule's tolerance,
+    recorded here rather than tuned away after the fact.
+  - >-
+    Stability: 44 prompts score within one 5-point step of 20 (scores 15 and 20),
+    against 9 for 30, the fewest of any plateau. At 20 a single +5 modifier moves any
+    summarise, translate or extract prompt to premium, and every creative prompt
+    (base 20) goes premium, including a haiku and the design doc's own local example
+    ("summarise this 600-word article", score 20).
+  - >-
+    Most under-routing is not a threshold problem: 13 of the 18 under-routed prompts at
+    30 score 15 or less, so no threshold from 20 to 45 reaches them. 8 of those 13 get
+    the wrong task type from the keyword classifier (math puzzles and creative forms
+    read as qa); the other 5 are hard examples of low-scoring tasks (legal paraphrase,
+    precise or literary translation, exact arithmetic over many items). The next lever
+    is the classifier and scoring, measured on held-out prompts.
+  - >-
+    40 has the best accuracy (78.6%) and savings (35.2%) but keeps 52.2% of premium
+    prompts local; it is rejected for under-routing, not chosen for accuracy.
+revisit_when: >-
+  The classifier changes, the dataset changes, or the paid quality check shows that
+  local answers for prompts scoring 20-25 are worse than premium ones.
+error_patterns: >-
+  Under-routed: 11 of the 18 get the wrong task type, mostly math word problems, logic
+  puzzles and demanding creative requests with none of their task's keywords, which the
+  classifier calls qa (10 points). The other 7 are classified correctly but are hard
+  examples of tasks with a low base score (legal paraphrase and advice, a multi-step causal
+  explanation, precise or
+  literary translation, exact arithmetic over many items, long-form fiction): keyword
+  rules see the task, not its difficulty. Over-routed: 17 of the 27 are classified code
+  or math, whose base scores (35, 40) are above the threshold however trivial the
+  prompt (reverse a string, 23 x 47); most of the rest are light planning or long but
+  simple inputs. Candidate fixes, not applied because they would be tuned on this same
+  set and need held-out prompts to measure: word-problem and constraint cues for math,
+  more creative forms (sonnet, speech, scene), and a lower base for one-line code and
+  arithmetic requests.

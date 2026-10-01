@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 700" width="760" height="700" role="img" aria-labelledby="t d" font-family="system-ui, -apple-system, Segoe UI, sans-serif">
+<style>
+.t{font-size:15px;font-weight:600} .st{font-size:12px} .lab,.ax{font-size:11px}
+.ax{font-variant-numeric:tabular-nums} .val,.halo{font-size:11px;font-weight:600}
+.halo{stroke-width:4px;stroke-linejoin:round}
+.grid,.base,.rule,.soft{stroke-width:1} .dot{stroke-width:2} .hit{fill:transparent}
+.ln{fill:none;stroke-width:2;stroke-linejoin:round;stroke-linecap:round}
+.bg{fill:#fcfcfb} .t,.val{fill:#0b0b0b} .st,.lab{fill:#52514e} .ax{fill:#898781} .grid{stroke:#e1e0d9} .base{stroke:#c3c2b7} .rule{stroke:#52514e} .soft{stroke:#898781} .dot,.halo{stroke:#fcfcfb} .halo{fill:#fcfcfb} .c1{stroke:#2a78d6} .f1{fill:#2a78d6} .c2{stroke:#eb6834} .f2{fill:#eb6834} .c3{stroke:#1baf7a} .f3{fill:#1baf7a} .c4{stroke:#eda100} .f4{fill:#eda100} .c5{stroke:#e87ba4} .f5{fill:#e87ba4}
+@media (prefers-color-scheme: dark){.bg{fill:#1a1a19} .t,.val{fill:#ffffff} .st,.lab{fill:#c3c2b7} .ax{fill:#898781} .grid{stroke:#2c2c2a} .base{stroke:#383835} .rule{stroke:#c3c2b7} .soft{stroke:#898781} .dot,.halo{stroke:#1a1a19} .halo{fill:#1a1a19} .c1{stroke:#3987e5} .f1{fill:#3987e5} .c2{stroke:#d95926} .f2{fill:#d95926} .c3{stroke:#199e70} .f3{fill:#199e70} .c4{stroke:#c98500} .f4{fill:#c98500} .c5{stroke:#d55181} .f5{fill:#d55181}}
+</style>
+<rect class="bg" width="760" height="700"/>
+<title id="t">Threshold sweep 20-45: routing quality and cost</title>
+<desc id="d">Router accuracy, under- and over-routing rates, local share and estimated savings for thresholds 20 to 45 on 159 labelled prompts. Kept threshold 30; the automated rule picked 20.</desc>
+<text class="t" x="56" y="24">Threshold sweep: routing quality vs cost</text>
+<text class="st" x="56" y="42">159 labelled prompts, dry-run routing (no model called). Savings are estimates on input tokens.</text>
+<text class="t" x="56" y="64" style="font-size:13px">Routing quality</text>
+<line class="ln c1" x1="56" y1="84" x2="72" y2="84"/><text class="lab" x="77" y="88">Accuracy</text>
+<line class="ln c2" x1="130.8" y1="84" x2="146.8" y2="84"/><text class="lab" x="151.8" y="88">Miss rate (premium prompts kept local)</text>
+<line class="ln c3" x1="373.6" y1="84" x2="389.6" y2="84"/><text class="lab" x="394.6" y="88">Waste rate (local prompts sent premium)</text>
+<line class="base" x1="56" y1="330.0" x2="640" y2="330.0"/>
+<text class="ax" x="48" y="334.0" text-anchor="end">0%</text>
+<line class="grid" x1="56" y1="277.5" x2="640" y2="277.5"/>
+<text class="ax" x="48" y="281.5" text-anchor="end">25%</text>
+<line class="grid" x1="56" y1="225.0" x2="640" y2="225.0"/>
+<text class="ax" x="48" y="229.0" text-anchor="end">50%</text>
+<line class="grid" x1="56" y1="172.5" x2="640" y2="172.5"/>
+<text class="ax" x="48" y="176.5" text-anchor="end">75%</text>
+<line class="grid" x1="56" y1="120.0" x2="640" y2="120.0"/>
+<text class="ax" x="48" y="124.0" text-anchor="end">100%</text>
+<text class="ax" x="67.23076923076923" y="346" text-anchor="middle">20</text>
+<text class="ax" x="179.53846153846155" y="346" text-anchor="middle">25</text>
+<text class="ax" x="291.8461538461538" y="346" text-anchor="middle">30</text>
+<text class="ax" x="404.15384615384613" y="346" text-anchor="middle">35</text>
+<text class="ax" x="516.4615384615385" y="346" text-anchor="middle">40</text>
+<text class="ax" x="628.7692307692307" y="346" text-anchor="middle">45</text>
+<line class="soft" x1="67.23076923076923" y1="114" x2="67.23076923076923" y2="330"/>
+<text class="lab" x="67.23076923076923" y="110" text-anchor="middle">rule's pick 20</text>
+<line class="rule" x1="291.8461538461538" y1="114" x2="291.8461538461538" y2="330"/>
+<text class="lab" x="291.8461538461538" y="110" text-anchor="middle">kept 30</text>
+<path class="ln c1" d="M56.0,190.0 V190.0 H78.5 V183.4 H100.9 V183.4 H123.4 V183.4 H145.8 V183.4 H168.3 V183.4 H190.8 V179.4 H213.2 V179.4 H235.7 V179.4 H258.2 V179.4 H280.6 V179.4 H303.1 V175.5 H325.5 V175.5 H348.0 V175.5 H370.5 V175.5 H392.9 V175.5 H415.4 V164.9 H437.8 V164.9 H460.3 V164.9 H482.8 V164.9 H505.2 V164.9 H527.7 V172.8 H550.2 V172.8 H572.6 V172.8 H595.1 V172.8 H617.5 V172.8 H640.0"/>
+<path class="ln c2" d="M56.0,270.7 V270.7 H78.5 V247.8 H100.9 V247.8 H123.4 V247.8 H145.8 V247.8 H168.3 V247.8 H190.8 V247.8 H213.2 V247.8 H235.7 V247.8 H258.2 V247.8 H280.6 V247.8 H303.1 V243.3 H325.5 V243.3 H348.0 V243.3 H370.5 V243.3 H392.9 V243.3 H415.4 V220.4 H437.8 V220.4 H460.3 V220.4 H482.8 V220.4 H505.2 V220.4 H527.7 V161.1 H550.2 V161.1 H572.6 V161.1 H595.1 V161.1 H617.5 V161.1 H640.0"/>
+<path class="ln c3" d="M56.0,255.7 V255.7 H78.5 V274.2 H100.9 V274.2 H123.4 V274.2 H145.8 V274.2 H168.3 V274.2 H190.8 V279.8 H213.2 V279.8 H235.7 V279.8 H258.2 V279.8 H280.6 V279.8 H303.1 V287.3 H325.5 V287.3 H348.0 V287.3 H370.5 V287.3 H392.9 V287.3 H415.4 V311.4 H437.8 V311.4 H460.3 V311.4 H482.8 V311.4 H505.2 V311.4 H527.7 V324.4 H550.2 V324.4 H572.6 V324.4 H595.1 V324.4 H617.5 V324.4 H640.0"/>
+<circle class="dot f1" cx="291.8461538461538" cy="179.42999999999998" r="4"/>
+<text class="halo" x="299.8461538461538" y="183.42999999999998">71.7%</text>
+<text class="val" x="299.8461538461538" y="183.42999999999998">71.7%</text>
+<circle class="dot f2" cx="291.8461538461538" cy="247.827" r="4"/>
+<text class="halo" x="299.8461538461538" y="251.827">39.1%</text>
+<text class="val" x="299.8461538461538" y="251.827">39.1%</text>
+<circle class="dot f3" cx="291.8461538461538" cy="279.831" r="4"/>
+<text class="halo" x="299.8461538461538" y="283.831">23.9%</text>
+<text class="val" x="299.8461538461538" y="283.831">23.9%</text>
+<rect class="hit" x="56.0" y="120" width="292.0" height="210"><title>Threshold 20: Accuracy 66.7%, Miss rate (premium prompts kept local) 28.3%, Waste rate (local prompts sent premium) 35.4%</title></rect>
+<rect class="hit" x="78.5" y="120" width="292.0" height="210"><title>Threshold 21: Accuracy 69.8%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 26.6%</title></rect>
+<rect class="hit" x="100.9" y="120" width="292.0" height="210"><title>Threshold 22: Accuracy 69.8%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 26.6%</title></rect>
+<rect class="hit" x="123.4" y="120" width="292.0" height="210"><title>Threshold 23: Accuracy 69.8%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 26.6%</title></rect>
+<rect class="hit" x="145.8" y="120" width="292.0" height="210"><title>Threshold 24: Accuracy 69.8%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 26.6%</title></rect>
+<rect class="hit" x="168.3" y="120" width="292.0" height="210"><title>Threshold 25: Accuracy 69.8%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 26.6%</title></rect>
+<rect class="hit" x="190.8" y="120" width="292.0" height="210"><title>Threshold 26: Accuracy 71.7%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 23.9%</title></rect>
+<rect class="hit" x="213.2" y="120" width="292.0" height="210"><title>Threshold 27: Accuracy 71.7%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 23.9%</title></rect>
+<rect class="hit" x="235.7" y="120" width="292.0" height="210"><title>Threshold 28: Accuracy 71.7%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 23.9%</title></rect>
+<rect class="hit" x="258.2" y="120" width="292.0" height="210"><title>Threshold 29: Accuracy 71.7%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 23.9%</title></rect>
+<rect class="hit" x="280.6" y="120" width="292.0" height="210"><title>Threshold 30: Accuracy 71.7%, Miss rate (premium prompts kept local) 39.1%, Waste rate (local prompts sent premium) 23.9%</title></rect>
+<rect class="hit" x="303.1" y="120" width="292.0" height="210"><title>Threshold 31: Accuracy 73.6%, Miss rate (premium prompts kept local) 41.3%, Waste rate (local prompts sent premium) 20.4%</title></rect>
+<rect class="hit" x="325.5" y="120" width="292.0" height="210"><title>Threshold 32: Accuracy 73.6%, Miss rate (premium prompts kept local) 41.3%, Waste rate (local prompts sent premium) 20.4%</title></rect>
+<rect class="hit" x="348.0" y="120" width="292.0" height="210"><title>Threshold 33: Accuracy 73.6%, Miss rate (premium prompts kept local) 41.3%, Waste rate (local prompts sent premium) 20.4%</title></rect>
+<rect class="hit" x="370.5" y="120" width="292.0" height="210"><title>Threshold 34: Accuracy 73.6%, Miss rate (premium prompts kept local) 41.3%, Waste rate (local prompts sent premium) 20.4%</title></rect>
+<rect class="hit" x="392.9" y="120" width="292.0" height="210"><title>Threshold 35: Accuracy 73.6%, Miss rate (premium prompts kept local) 41.3%, Waste rate (local prompts sent premium) 20.4%</title></rect>
+<rect class="hit" x="415.4" y="120" width="292.0" height="210"><title>Threshold 36: Accuracy 78.6%, Miss rate (premium prompts kept local) 52.2%, Waste rate (local prompts sent premium) 8.8%</title></rect>
+<rect class="hit" x="437.8" y="120" width="292.0" height="210"><title>Threshold 37: Accuracy 78.6%, Miss rate (premium prompts kept local) 52.2%, Waste rate (local prompts sent premium) 8.8%</title></rect>
+<rect class="hit" x="460.3" y="120" width="292.0" height="210"><title>Threshold 38: Accuracy 78.6%, Miss rate (premium prompts kept local) 52.2%, Waste rate (local prompts sent premium) 8.8%</title></rect>
+<rect class="hit" x="482.8" y="120" width="292.0" height="210"><title>Threshold 39: Accuracy 78.6%, Miss rate (premium prompts kept local) 52.2%, Waste rate (local prompts sent premium) 8.8%</title></rect>
+<rect class="hit" x="505.2" y="120" width="292.0" height="210"><title>Threshold 40: Accuracy 78.6%, Miss rate (premium prompts kept local) 52.2%, Waste rate (local prompts sent premium) 8.8%</title></rect>
+<rect class="hit" x="527.7" y="120" width="292.0" height="210"><title>Threshold 41: Accuracy 74.8%, Miss rate (premium prompts kept local) 80.4%, Waste rate (local prompts sent premium) 2.6%</title></rect>
+<rect class="hit" x="550.2" y="120" width="292.0" height="210"><title>Threshold 42: Accuracy 74.8%, Miss rate (premium prompts kept local) 80.4%, Waste rate (local prompts sent premium) 2.6%</title></rect>
+<rect class="hit" x="572.6" y="120" width="292.0" height="210"><title>Threshold 43: Accuracy 74.8%, Miss rate (premium prompts kept local) 80.4%, Waste rate (local prompts sent premium) 2.6%</title></rect>
+<rect class="hit" x="595.1" y="120" width="292.0" height="210"><title>Threshold 44: Accuracy 74.8%, Miss rate (premium prompts kept local) 80.4%, Waste rate (local prompts sent premium) 2.6%</title></rect>
+<rect class="hit" x="617.5" y="120" width="292.0" height="210"><title>Threshold 45: Accuracy 74.8%, Miss rate (premium prompts kept local) 80.4%, Waste rate (local prompts sent premium) 2.6%</title></rect>
+<text class="t" x="56" y="374" style="font-size:13px">Cost</text>
+<line class="ln c4" x1="56" y1="394" x2="72" y2="394"/><text class="lab" x="77" y="398">Local share</text>
+<line class="ln c5" x1="147.6" y1="394" x2="163.6" y2="394"/><text class="lab" x="168.6" y="398">Estimated savings (input tokens)</text>
+<line class="base" x1="56" y1="640.0" x2="640" y2="640.0"/>
+<text class="ax" x="48" y="644.0" text-anchor="end">0%</text>
+<line class="grid" x1="56" y1="587.5" x2="640" y2="587.5"/>
+<text class="ax" x="48" y="591.5" text-anchor="end">25%</text>
+<line class="grid" x1="56" y1="535.0" x2="640" y2="535.0"/>
+<text class="ax" x="48" y="539.0" text-anchor="end">50%</text>
+<line class="grid" x1="56" y1="482.5" x2="640" y2="482.5"/>
+<text class="ax" x="48" y="486.5" text-anchor="end">75%</text>
+<line class="grid" x1="56" y1="430.0" x2="640" y2="430.0"/>
+<text class="ax" x="48" y="434.0" text-anchor="end">100%</text>
+<text class="ax" x="67.23076923076923" y="656" text-anchor="middle">20</text>
+<text class="ax" x="179.53846153846155" y="656" text-anchor="middle">25</text>
+<text class="ax" x="291.8461538461538" y="656" text-anchor="middle">30</text>
+<text class="ax" x="404.15384615384613" y="656" text-anchor="middle">35</text>
+<text class="ax" x="516.4615384615385" y="656" text-anchor="middle">40</text>
+<text class="ax" x="628.7692307692307" y="656" text-anchor="middle">45</text>
+<line class="soft" x1="67.23076923076923" y1="424" x2="67.23076923076923" y2="640"/>
+<line class="rule" x1="291.8461538461538" y1="424" x2="291.8461538461538" y2="640"/>
+<path class="ln c4" d="M56.0,526.4 V526.4 H78.5 V506.6 H100.9 V506.6 H123.4 V506.6 H145.8 V506.6 H168.3 V506.6 H190.8 V502.6 H213.2 V502.6 H235.7 V502.6 H258.2 V502.6 H280.6 V502.6 H303.1 V496.0 H325.5 V496.0 H348.0 V496.0 H370.5 V496.0 H392.9 V496.0 H415.4 V472.3 H437.8 V472.3 H460.3 V472.3 H482.8 V472.3 H505.2 V472.3 H527.7 V445.9 H550.2 V445.9 H572.6 V445.9 H595.1 V445.9 H617.5 V445.9 H640.0"/>
+<path class="ln c5" d="M56.0,615.2 V615.2 H78.5 V605.4 H100.9 V605.4 H123.4 V605.4 H145.8 V605.4 H168.3 V605.4 H190.8 V603.9 H213.2 V603.9 H235.7 V603.9 H258.2 V603.9 H280.6 V603.9 H303.1 V593.1 H325.5 V593.1 H348.0 V593.1 H370.5 V593.1 H392.9 V593.1 H415.4 V566.0 H437.8 V566.0 H460.3 V566.0 H482.8 V566.0 H505.2 V566.0 H527.7 V556.1 H550.2 V556.1 H572.6 V556.1 H595.1 V556.1 H617.5 V556.1 H640.0"/>
+<circle class="dot f4" cx="291.8461538461538" cy="502.639" r="4"/>
+<text class="halo" x="299.8461538461538" y="506.639">65.4%</text>
+<text class="val" x="299.8461538461538" y="506.639">65.4%</text>
+<circle class="dot f5" cx="291.8461538461538" cy="603.922" r="4"/>
+<text class="halo" x="299.8461538461538" y="607.922">17.2%</text>
+<text class="val" x="299.8461538461538" y="607.922">17.2%</text>
+<rect class="hit" x="56.0" y="430" width="292.0" height="210"><title>Threshold 20: Local share 54.1%, Estimated savings (input tokens) 11.8%</title></rect>
+<rect class="hit" x="78.5" y="430" width="292.0" height="210"><title>Threshold 21: Local share 63.5%, Estimated savings (input tokens) 16.5%</title></rect>
+<rect class="hit" x="100.9" y="430" width="292.0" height="210"><title>Threshold 22: Local share 63.5%, Estimated savings (input tokens) 16.5%</title></rect>
+<rect class="hit" x="123.4" y="430" width="292.0" height="210"><title>Threshold 23: Local share 63.5%, Estimated savings (input tokens) 16.5%</title></rect>
+<rect class="hit" x="145.8" y="430" width="292.0" height="210"><title>Threshold 24: Local share 63.5%, Estimated savings (input tokens) 16.5%</title></rect>
+<rect class="hit" x="168.3" y="430" width="292.0" height="210"><title>Threshold 25: Local share 63.5%, Estimated savings (input tokens) 16.5%</title></rect>
+<rect class="hit" x="190.8" y="430" width="292.0" height="210"><title>Threshold 26: Local share 65.4%, Estimated savings (input tokens) 17.2%</title></rect>
+<rect class="hit" x="213.2" y="430" width="292.0" height="210"><title>Threshold 27: Local share 65.4%, Estimated savings (input tokens) 17.2%</title></rect>
+<rect class="hit" x="235.7" y="430" width="292.0" height="210"><title>Threshold 28: Local share 65.4%, Estimated savings (input tokens) 17.2%</title></rect>
+<rect class="hit" x="258.2" y="430" width="292.0" height="210"><title>Threshold 29: Local share 65.4%, Estimated savings (input tokens) 17.2%</title></rect>
+<rect class="hit" x="280.6" y="430" width="292.0" height="210"><title>Threshold 30: Local share 65.4%, Estimated savings (input tokens) 17.2%</title></rect>
+<rect class="hit" x="303.1" y="430" width="292.0" height="210"><title>Threshold 31: Local share 68.5%, Estimated savings (input tokens) 22.3%</title></rect>
+<rect class="hit" x="325.5" y="430" width="292.0" height="210"><title>Threshold 32: Local share 68.5%, Estimated savings (input tokens) 22.3%</title></rect>
+<rect class="hit" x="348.0" y="430" width="292.0" height="210"><title>Threshold 33: Local share 68.5%, Estimated savings (input tokens) 22.3%</title></rect>
+<rect class="hit" x="370.5" y="430" width="292.0" height="210"><title>Threshold 34: Local share 68.5%, Estimated savings (input tokens) 22.3%</title></rect>
+<rect class="hit" x="392.9" y="430" width="292.0" height="210"><title>Threshold 35: Local share 68.5%, Estimated savings (input tokens) 22.3%</title></rect>
+<rect class="hit" x="415.4" y="430" width="292.0" height="210"><title>Threshold 36: Local share 79.9%, Estimated savings (input tokens) 35.2%</title></rect>
+<rect class="hit" x="437.8" y="430" width="292.0" height="210"><title>Threshold 37: Local share 79.9%, Estimated savings (input tokens) 35.2%</title></rect>
+<rect class="hit" x="460.3" y="430" width="292.0" height="210"><title>Threshold 38: Local share 79.9%, Estimated savings (input tokens) 35.2%</title></rect>
+<rect class="hit" x="482.8" y="430" width="292.0" height="210"><title>Threshold 39: Local share 79.9%, Estimated savings (input tokens) 35.2%</title></rect>
+<rect class="hit" x="505.2" y="430" width="292.0" height="210"><title>Threshold 40: Local share 79.9%, Estimated savings (input tokens) 35.2%</title></rect>
+<rect class="hit" x="527.7" y="430" width="292.0" height="210"><title>Threshold 41: Local share 92.5%, Estimated savings (input tokens) 39.9%</title></rect>
+<rect class="hit" x="550.2" y="430" width="292.0" height="210"><title>Threshold 42: Local share 92.5%, Estimated savings (input tokens) 39.9%</title></rect>
+<rect class="hit" x="572.6" y="430" width="292.0" height="210"><title>Threshold 43: Local share 92.5%, Estimated savings (input tokens) 39.9%</title></rect>
+<rect class="hit" x="595.1" y="430" width="292.0" height="210"><title>Threshold 44: Local share 92.5%, Estimated savings (input tokens) 39.9%</title></rect>
+<rect class="hit" x="617.5" y="430" width="292.0" height="210"><title>Threshold 45: Local share 92.5%, Estimated savings (input tokens) 39.9%</title></rect>
+<text class="st" x="348.0" y="682" text-anchor="middle">Threshold (a score at or above it goes premium)</text>
+</svg>

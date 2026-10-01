@@ -1,0 +1,35 @@
+# Overlay: MOCK local models too, for machines that cannot run the real ones.
+# DEVELOPMENT ONLY. Use together with docker-compose.mock.yml:
+#   docker compose -f docker-compose.yml -f docker-compose.mock.yml \
+#                  -f docker-compose.offline.yml up -d
+# or set STACK_MODE=offline in .env and use `make up`.
+#
+# The API talks to mock-ollama instead of Ollama: same model tags, simulated
+# answers and latency, stored with provider = mock. The ollama container still
+# starts (the API depends on it) but stays idle with no models. Routing, fallback
+# (`docker compose stop mock-ollama`), logging, metrics, dashboards and the
+# playground all behave as in the real stack.
+services:
+  mock-ollama:
+    build: .
+    command: ["uvicorn", "app.devtools.mock_llm:create_app", "--factory", "--host", "0.0.0.0", "--port", "8080"]
+    environment:
+      MOCK_TIER: local
+      MOCK_MODELS: phi3:mini,llama3.1:8b,mistral:7b
+      MOCK_DELAY_MS: ${MOCK_LOCAL_DELAY_MS:-250}
+      MOCK_MS_PER_TOKEN: ${MOCK_LOCAL_MS_PER_TOKEN:-12}
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8080/health', timeout=5)"]
+      interval: 10s
+      timeout: 6s
+      retries: 6
+      start_period: 5s
+    restart: unless-stopped
+
+  api:
+    environment:
+      OLLAMA_BASE_URL: http://mock-ollama:8080
+      LOCAL_PROVIDER: mock   # stored with every local answer, so mock rows stay labelled
+    depends_on:
+      mock-ollama:
+        condition: service_healthy

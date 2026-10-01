@@ -1,0 +1,188 @@
+# Routing policy: every threshold, weight and keyword the router uses.
+# Nothing here is hardcoded in the app. Phase 4 tunes these values from data.
+#
+# Score = task base points + modifiers, capped at 100.
+# Score < threshold stays local; score >= threshold goes premium.
+# Hard rules run first, in this order: privacy, caller override, capability,
+# context-window fit. Then the threshold decides.
+
+threshold: 30
+max_score: 100
+
+# Input-token estimate used for routing. Final costs (Phase 2) use the usage
+# the provider reports, so one tokenizer for every model is close enough.
+tokens:
+  encoding: o200k_base
+  per_message_overhead: 3        # role and separators around each message
+  reply_overhead: 3              # tokens that prime the assistant's reply
+
+# Base points per task type.
+task_base:
+  chitchat: 0
+  qa: 10
+  rewrite: 10
+  summarise: 15
+  translate: 15
+  extract: 15
+  creative: 20
+  code: 35
+  math: 40
+  analysis: 40
+
+# Keyword task classifier. Only the last user message is classified.
+# - keywords: case-insensitive whole words or phrases, matched outside code blocks
+# - patterns: regular expressions, matched on the whole message
+# Each distinct keyword counts once: weights.instruction if it appears in the
+# instruction (the first line, up to instruction_max_chars), weights.body if it
+# only appears later, e.g. in a pasted article. A pattern or a code block adds
+# weights.pattern. The highest total wins; ties go to the earlier task in
+# `priority` (most demanding first, since under-routing hurts quality while
+# over-routing only costs money). With no match at all, a message of at most
+# chitchat_max_words words is chitchat, anything longer is fallback_task.
+classifier:
+  instruction_max_chars: 200
+  weights: {instruction: 3, body: 1, pattern: 2}
+  chitchat_max_words: 4
+  fallback_task: qa
+  priority: [code, math, analysis, creative, extract, translate, summarise, rewrite, qa, chitchat]
+  code_block_pattern: '```[\s\S]*?(?:```|\Z)'
+  tasks:
+    chitchat:
+      keywords: [hi, hello, hey, hiya, thanks, thank you, good morning, good evening,
+                 how are you, what can you do, who are you]
+    qa:
+      keywords: [what is, what are, what's, who is, who was, who wrote, when did, when was,
+                 where is, how many, how much, define, meaning of]
+    rewrite:
+      keywords: [rewrite, rephrase, reword, paraphrase, fix grammar, proofread, convert to,
+                 format as, make it sound, more professional, friendlier, shorten]
+    summarise:
+      keywords: [summarise, summarize, summary, tl;dr, tldr, key points, main points, recap]
+    translate:
+      # "in English" is left out: "explain in English" is rarely a translation.
+      keywords: [translate, translation, into english,
+                 in french, into french, in spanish, into spanish, in german, into german,
+                 in italian, into italian, in portuguese, into portuguese, in dutch, into dutch,
+                 in japanese, into japanese, in chinese, into chinese, in korean, into korean,
+                 in arabic, into arabic, in russian, into russian, in hindi, into hindi]
+    extract:
+      keywords: [extract, list all, classify, categorise, categorize, label, tag each,
+                 pull out, find all, sentiment]
+    creative:
+      keywords: [poem, story, slogan, haiku, limerick, lyrics, song, tagline, fiction,
+                 short story, creative, jingle]
+    code:
+      keywords: [code, function, bug, debug, refactor, compile, stack trace, exception,
+                 python, javascript, typescript, java, rust, golang, c++, sql, regex,
+                 unit test, script, api endpoint, dockerfile]
+      patterns:
+        - '\bdef \w+\('
+        - '\bfunction \w*\s*\('
+        - '\bclass \w+[:(]'
+    math:
+      keywords: [solve, prove, calculate, compute, equation, derivative, integral,
+                 probability, theorem, algebra]
+      patterns:
+        - '\d+\s*[a-z]?\s*[-+*/^=]\s*\d+'
+    analysis:
+      keywords: [compare, comparison, design, strategy, trade-offs, tradeoffs, trade-off,
+                 plan, architecture, evaluate, assess, recommend, versus, vs]
+
+modifiers:
+  # Estimated input tokens: below 200 -> 0, 200-999 -> 5, 1000-2999 -> 10, 3000+ -> 20.
+  input_length: {bands: [200, 1000, 3000], points: [0, 5, 10, 20]}
+  reasoning_cues:
+    each: 5
+    max: 15
+    keywords: [step by step, step-by-step, explain why, pros and cons, justify,
+               edge cases, root cause, think through, reasoning]
+  # Each extra question (question marks) or numbered requirement after the first.
+  # The larger of the two counts is used, so "1. What…? 2. Why…?" is not double counted.
+  multi_part:
+    each: 5
+    max: 10
+    question_pattern: '\?'
+    numbered_item_pattern: '(?m)^\s*\d+[.)]\s'
+  output_demand:
+    points: 10
+    keywords: [detailed, comprehensive, report, in depth, in-depth, thorough, exhaustive]
+    words_requested_pattern: '(\d[\d,]*)\s*\+?\s*words'
+    min_words_requested: 500
+    min_max_tokens: 1000
+  # Counts user and assistant messages (system prompts are not conversation depth).
+  conversation_depth: {more_than: [6, 12], points: [5, 10]}
+  # A code block in a prompt that is not itself classified as code.
+  code_in_input: {points: 10}
+
+# Callers may send X-Router-Tier: local|premium to force a tier. A forced tier
+# never bypasses the capability or context-window rules, and never the privacy rule.
+overrides:
+  allow_tier_header: true
+
+# Context-window fit: estimated input tokens plus the reply budget must fit the
+# model. The reply budget is the request's max_tokens, or this default.
+context_fit:
+  default_output_reserve: 1024
+
+# Input guardrails, checked before any routing work.
+guardrails:
+  max_input_chars: 200000      # longer requests are rejected with 413
+  prompt_preview_chars: 200    # stored previews are PII-masked, then cut to this length
+
+# Regex PII detection over every message. Matches are masked as [KIND] in the stored
+# prompt preview, in this order (cards before phones, so a card is not half-masked).
+# With privacy_mode on, a prompt with any match is kept local even when the caller
+# forces premium, and never falls back to the cloud.
+pii:
+  patterns:
+    card: '\b(?:\d[ -]?){12,18}\d\b'
+    iban: '\b[A-Z]{2}\d{2}(?: ?[A-Z0-9]{4}){2,7}(?: ?[A-Z0-9]{1,4})?\b'
+    email: '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}'
+    us_ssn: '\b\d{3}-\d{2}-\d{4}\b'
+    uk_nino: '\b[A-CEGHJ-PR-TW-Z]{2} ?\d{2} ?\d{2} ?\d{2} ?[A-D]\b'
+    phone: '(?<![\w+])(?:\+\d{1,3}[ .-]?)?(?:\(\d{2,4}\)[ .-]?|\d{2,4}[ .-])\d{3,4}[ .-]?\d{3,4}(?!\w)'
+  luhn_checked: [card]   # a card match must also pass the Luhn checksum
+
+privacy_mode: false
+
+# Model choice inside a tier: model IDs from models.yaml keyed by task type.
+# A task without an entry uses `default`.
+local_models:
+  chitchat: phi3-mini
+  qa: phi3-mini
+  summarise: mistral-7b
+  translate: mistral-7b
+  rewrite: mistral-7b
+  default: llama3-8b
+premium_models:
+  default: premium-default
+
+timeouts_s:
+  local: 60    # one chat completion from Ollama (CPU inference can be slow)
+  premium: 60  # one chat completion from the cloud provider
+  health: 3    # the Ollama and Postgres probes inside GET /health
+
+# A local timeout, error or empty answer is retried once on the premium default and
+# recorded as fallback_from. Never for privacy-kept prompts (PII with privacy_mode on),
+# an explicit model ID or a forced X-Router-Tier: local; those fail with a clear error.
+fallback:
+  local_to_premium: true
+
+# Premium calls: unreachable, timed out, HTTP 429 or 5xx answers are retried after
+# backoff_s; other errors (e.g. a bad key) are not. Then the API answers 502 or 504.
+retry:
+  premium_attempts: 2   # the call plus one retry
+  backoff_s: 1.0
+
+# Exact-match response cache (Redis at REDIS_URL; no REDIS_URL = no cache). A request
+# identical to an earlier one (same messages, requested model, forced tier, the model
+# the router picked, generation parameters and privacy mode) is answered from the cache
+# with no model call, logged as cache_hit, and costs nothing. Keys are SHA-256 hashes,
+# never prompt text. Only successful answers are stored. Clients can send
+# `Cache-Control: no-cache` to skip the lookup (the answer is still stored).
+cache:
+  enabled: true
+  ttl_s: 3600
+  key_prefix: "slm-router:cache:v1:"
+  store_pii: false   # answers to prompts with detected PII are never cached
+  timeout_s: 0.25    # a slow or unreachable Redis counts as a miss, never a wait

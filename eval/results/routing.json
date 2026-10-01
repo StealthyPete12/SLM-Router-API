@@ -1,0 +1,2664 @@
+{
+  "kind": "routing_eval",
+  "generated_at": "2026-10-01T11:43:33+00:00",
+  "version": "803417e-dirty",
+  "dataset": {
+    "path": "prompts.jsonl",
+    "sha256": "69e43184ce912249bd0ae4447f60a1863d7b156c05c926c7812537cce5b89fc7"
+  },
+  "config": {
+    "routing_yaml_sha256": "2a50d3f45ed617422526131c5f000d2662fd345097e03a064c61c6e7ba031ffc",
+    "configured_threshold": 30,
+    "baseline_model": "premium-default",
+    "baseline_priced": false
+  },
+  "threshold": 30,
+  "composition": {
+    "rows": 159,
+    "local": 113,
+    "premium": 46,
+    "quality": 46,
+    "by_task": {
+      "chitchat": {
+        "total": 12,
+        "local": 12,
+        "premium": 0,
+        "borderline": 1,
+        "quality": 2
+      },
+      "qa": {
+        "total": 17,
+        "local": 14,
+        "premium": 3,
+        "borderline": 5,
+        "quality": 5
+      },
+      "rewrite": {
+        "total": 14,
+        "local": 13,
+        "premium": 1,
+        "borderline": 6,
+        "quality": 4
+      },
+      "summarise": {
+        "total": 15,
+        "local": 12,
+        "premium": 3,
+        "borderline": 4,
+        "quality": 5
+      },
+      "translate": {
+        "total": 12,
+        "local": 9,
+        "premium": 3,
+        "borderline": 6,
+        "quality": 4
+      },
+      "extract": {
+        "total": 15,
+        "local": 12,
+        "premium": 3,
+        "borderline": 4,
+        "quality": 5
+      },
+      "creative": {
+        "total": 15,
+        "local": 11,
+        "premium": 4,
+        "borderline": 6,
+        "quality": 5
+      },
+      "code": {
+        "total": 21,
+        "local": 12,
+        "premium": 9,
+        "borderline": 10,
+        "quality": 6
+      },
+      "math": {
+        "total": 17,
+        "local": 8,
+        "premium": 9,
+        "borderline": 11,
+        "quality": 5
+      },
+      "analysis": {
+        "total": 21,
+        "local": 10,
+        "premium": 11,
+        "borderline": 9,
+        "quality": 5
+      }
+    },
+    "tags": {
+      "borderline": 62,
+      "code_block": 12,
+      "context_window": 2,
+      "deep_conversation": 5,
+      "implicit_task": 25,
+      "long_input": 12,
+      "multi_part": 21,
+      "obvious_local": 30,
+      "obvious_premium": 9,
+      "output_demand": 7,
+      "override": 3,
+      "privacy": 5,
+      "reasoning_cue": 17,
+      "system_prompt": 2
+    }
+  },
+  "metrics": {
+    "threshold": 30,
+    "n": 159,
+    "correct": 114,
+    "accuracy_pct": 71.7,
+    "under_count": 18,
+    "under_pct": 11.32,
+    "miss_rate_pct": 39.13,
+    "over_count": 27,
+    "over_pct": 16.98,
+    "waste_rate_pct": 23.89,
+    "local_count": 104,
+    "local_share_pct": 65.41,
+    "premium_share_pct": 34.59,
+    "savings_pct": 17.18,
+    "savings_basis": "token_share",
+    "savings_usd": null,
+    "baseline_usd": null,
+    "weighted_errors": 63,
+    "near_threshold": 9,
+    "by_task": {
+      "chitchat": {
+        "n": 12,
+        "correct": 12,
+        "under": 0,
+        "over": 0,
+        "accuracy_pct": 100.0
+      },
+      "qa": {
+        "n": 17,
+        "correct": 13,
+        "under": 2,
+        "over": 2,
+        "accuracy_pct": 76.47
+      },
+      "rewrite": {
+        "n": 14,
+        "correct": 12,
+        "under": 1,
+        "over": 1,
+        "accuracy_pct": 85.71
+      },
+      "summarise": {
+        "n": 15,
+        "correct": 11,
+        "under": 0,
+        "over": 4,
+        "accuracy_pct": 73.33
+      },
+      "translate": {
+        "n": 12,
+        "correct": 8,
+        "under": 3,
+        "over": 1,
+        "accuracy_pct": 66.67
+      },
+      "extract": {
+        "n": 15,
+        "correct": 13,
+        "under": 1,
+        "over": 1,
+        "accuracy_pct": 86.67
+      },
+      "creative": {
+        "n": 15,
+        "correct": 10,
+        "under": 4,
+        "over": 1,
+        "accuracy_pct": 66.67
+      },
+      "code": {
+        "n": 21,
+        "correct": 11,
+        "under": 1,
+        "over": 9,
+        "accuracy_pct": 52.38
+      },
+      "math": {
+        "n": 17,
+        "correct": 8,
+        "under": 5,
+        "over": 4,
+        "accuracy_pct": 47.06
+      },
+      "analysis": {
+        "n": 21,
+        "correct": 16,
+        "under": 1,
+        "over": 4,
+        "accuracy_pct": 76.19
+      }
+    },
+    "by_decider": {
+      "threshold": {
+        "n": 155,
+        "correct": 110,
+        "under": 18,
+        "over": 27,
+        "accuracy_pct": 70.97
+      },
+      "hard_rule": {
+        "n": 4,
+        "correct": 4,
+        "under": 0,
+        "over": 0,
+        "accuracy_pct": 100.0
+      }
+    },
+    "borderline": {
+      "n": 62,
+      "correct": 26,
+      "under": 12,
+      "over": 24,
+      "accuracy_pct": 41.94
+    },
+    "confusion": {
+      "local": {
+        "local": 86,
+        "premium": 27
+      },
+      "premium": {
+        "local": 18,
+        "premium": 28
+      }
+    },
+    "classifier_agreement_pct": 71.7
+  },
+  "outcomes": [
+    {
+      "id": "chitchat-001",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 9,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "chitchat-002",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 14,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "chitchat-003",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 14,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "chitchat-004",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 18,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "chitchat-005",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 8,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "chitchat-006",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 15,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "chitchat-007",
+      "task": "chitchat",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 16,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "chitchat-008",
+      "task": "chitchat",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 14,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "chitchat-009",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 9,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "chitchat-010",
+      "task": "chitchat",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 15,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "chitchat-011",
+      "task": "chitchat",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 165,
+      "tags": [
+        "borderline",
+        "deep_conversation"
+      ]
+    },
+    {
+      "id": "chitchat-012",
+      "task": "chitchat",
+      "classified_task": "chitchat",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 15,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "qa-001",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 13,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "qa-002",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 13,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "qa-003",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 13,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "qa-004",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 16,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "qa-005",
+      "task": "qa",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 15,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "qa-006",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 17,
+      "tags": []
+    },
+    {
+      "id": "qa-007",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 12,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "qa-008",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 15,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "qa-009",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 14,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "qa-010",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 29,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "qa-011",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 26,
+      "tags": [
+        "borderline",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "qa-012",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 35,
+      "tags": [
+        "borderline",
+        "multi_part",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "qa-013",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 17,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "qa-014",
+      "task": "qa",
+      "classified_task": "analysis",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 55,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 36,
+      "tags": [
+        "borderline",
+        "output_demand",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "qa-015",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 40,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "qa-016",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 16,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "rewrite-001",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 29,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "rewrite-002",
+      "task": "rewrite",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 28,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "rewrite-003",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 27,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "rewrite-004",
+      "task": "rewrite",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 50,
+      "tags": []
+    },
+    {
+      "id": "rewrite-005",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 125,
+      "tags": []
+    },
+    {
+      "id": "rewrite-006",
+      "task": "rewrite",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 44,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "rewrite-007",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 35,
+      "tags": []
+    },
+    {
+      "id": "rewrite-008",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 548,
+      "tags": [
+        "borderline",
+        "long_input"
+      ]
+    },
+    {
+      "id": "rewrite-009",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 128,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "rewrite-010",
+      "task": "rewrite",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 58,
+      "tags": [
+        "borderline",
+        "code_block"
+      ]
+    },
+    {
+      "id": "rewrite-011",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 68,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "rewrite-012",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 86,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "rewrite-013",
+      "task": "rewrite",
+      "classified_task": "rewrite",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 46,
+      "tags": [
+        "system_prompt"
+      ]
+    },
+    {
+      "id": "rewrite-014",
+      "task": "rewrite",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 154,
+      "tags": [
+        "borderline",
+        "deep_conversation"
+      ]
+    },
+    {
+      "id": "summarise-001",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 74,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "summarise-002",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 108,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "summarise-003",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 648,
+      "tags": [
+        "long_input"
+      ]
+    },
+    {
+      "id": "summarise-004",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 30,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 446,
+      "tags": [
+        "borderline",
+        "long_input",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "summarise-005",
+      "task": "summarise",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 75,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 1053,
+      "tags": [
+        "long_input",
+        "output_demand",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "summarise-006",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 181,
+      "tags": [
+        "deep_conversation"
+      ]
+    },
+    {
+      "id": "summarise-007",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 19,
+      "tags": []
+    },
+    {
+      "id": "summarise-008",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 96,
+      "tags": []
+    },
+    {
+      "id": "summarise-009",
+      "task": "summarise",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 139,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "summarise-010",
+      "task": "summarise",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 25,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 107,
+      "tags": [
+        "multi_part"
+      ]
+    },
+    {
+      "id": "summarise-011",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 30,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 161,
+      "tags": [
+        "borderline",
+        "output_demand",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "summarise-012",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 30,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 801,
+      "tags": [
+        "long_input",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "summarise-013",
+      "task": "summarise",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 360,
+      "tags": [
+        "borderline",
+        "code_block"
+      ]
+    },
+    {
+      "id": "summarise-014",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 45,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 8326,
+      "tags": [
+        "context_window",
+        "long_input"
+      ]
+    },
+    {
+      "id": "translate-001",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 17,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "translate-002",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 19,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "translate-003",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 30,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "translate-004",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 87,
+      "tags": []
+    },
+    {
+      "id": "translate-005",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 57,
+      "tags": []
+    },
+    {
+      "id": "translate-006",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 65,
+      "tags": []
+    },
+    {
+      "id": "translate-007",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 103,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "translate-008",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 50,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "translate-009",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 25,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 72,
+      "tags": [
+        "borderline",
+        "code_block"
+      ]
+    },
+    {
+      "id": "translate-010",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 30,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 429,
+      "tags": [
+        "borderline",
+        "long_input"
+      ]
+    },
+    {
+      "id": "translate-011",
+      "task": "translate",
+      "classified_task": "chitchat",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 0,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 61,
+      "tags": [
+        "borderline",
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "translate-012",
+      "task": "translate",
+      "classified_task": "translate",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "mistral-7b",
+      "input_tokens": 40,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "extract-001",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 63,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "extract-002",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 58,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "extract-003",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 32,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "extract-004",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 115,
+      "tags": []
+    },
+    {
+      "id": "extract-005",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 25,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 72,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "extract-006",
+      "task": "extract",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 45,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "extract-007",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 3740,
+      "tags": [
+        "long_input"
+      ]
+    },
+    {
+      "id": "extract-008",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 131,
+      "tags": []
+    },
+    {
+      "id": "extract-009",
+      "task": "extract",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 112,
+      "tags": [
+        "borderline",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "extract-010",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 61,
+      "tags": [
+        "privacy"
+      ]
+    },
+    {
+      "id": "extract-011",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 177,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "extract-012",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 72,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "extract-013",
+      "task": "extract",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 34,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "extract-014",
+      "task": "extract",
+      "classified_task": "extract",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 65,
+      "tags": [
+        "multi_part",
+        "privacy"
+      ]
+    },
+    {
+      "id": "creative-001",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 13,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "creative-002",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 16,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "creative-003",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 18,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "creative-004",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 23,
+      "tags": []
+    },
+    {
+      "id": "creative-005",
+      "task": "creative",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 16,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "creative-006",
+      "task": "creative",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 18,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "creative-007",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 33,
+      "tags": [
+        "output_demand"
+      ]
+    },
+    {
+      "id": "creative-008",
+      "task": "creative",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 29,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "creative-009",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 17,
+      "tags": []
+    },
+    {
+      "id": "creative-010",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 23,
+      "tags": [
+        "multi_part"
+      ]
+    },
+    {
+      "id": "creative-011",
+      "task": "creative",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 33,
+      "tags": [
+        "borderline",
+        "output_demand"
+      ]
+    },
+    {
+      "id": "creative-012",
+      "task": "creative",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 31,
+      "tags": [
+        "borderline",
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "creative-013",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "llama3-8b",
+      "input_tokens": 188,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "creative-014",
+      "task": "creative",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 34,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "code-001",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 16,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "code-002",
+      "task": "code",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 14,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "code-003",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 34,
+      "tags": [
+        "borderline",
+        "code_block"
+      ]
+    },
+    {
+      "id": "code-004",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 38,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "code-005",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 37,
+      "tags": [
+        "obvious_premium",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "code-006",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 141,
+      "tags": [
+        "code_block",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "code-007",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 488,
+      "tags": [
+        "code_block",
+        "long_input",
+        "obvious_premium"
+      ]
+    },
+    {
+      "id": "code-008",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 24,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "code-009",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 109,
+      "tags": [
+        "code_block"
+      ]
+    },
+    {
+      "id": "code-010",
+      "task": "code",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 28,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "code-011",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 55,
+      "tags": [
+        "borderline",
+        "code_block"
+      ]
+    },
+    {
+      "id": "code-012",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 38,
+      "tags": [
+        "code_block"
+      ]
+    },
+    {
+      "id": "code-013",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 27,
+      "tags": [
+        "obvious_premium"
+      ]
+    },
+    {
+      "id": "code-014",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 64,
+      "tags": [
+        "borderline",
+        "code_block"
+      ]
+    },
+    {
+      "id": "code-015",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 29,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "code-016",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 190,
+      "tags": [
+        "code_block",
+        "obvious_premium"
+      ]
+    },
+    {
+      "id": "code-017",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 174,
+      "tags": [
+        "borderline",
+        "code_block"
+      ]
+    },
+    {
+      "id": "code-018",
+      "task": "code",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 231,
+      "tags": [
+        "deep_conversation",
+        "obvious_premium"
+      ]
+    },
+    {
+      "id": "code-019",
+      "task": "code",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 16,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "code-020",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 23,
+      "tags": [
+        "obvious_premium"
+      ]
+    },
+    {
+      "id": "math-001",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 15,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "math-002",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 13,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "math-003",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 20,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "math-004",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 32,
+      "tags": [
+        "borderline",
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "math-005",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 18,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "math-006",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 30,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "math-007",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 21,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "math-008",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 23,
+      "tags": [
+        "borderline",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "math-009",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 33,
+      "tags": [
+        "borderline",
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "math-010",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 38,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "math-011",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 53,
+      "tags": [
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "math-012",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 13,
+      "tags": [
+        "borderline",
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "math-013",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 54,
+      "tags": [
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "math-014",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 14,
+      "tags": [
+        "obvious_local"
+      ]
+    },
+    {
+      "id": "math-015",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 34,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "math-016",
+      "task": "math",
+      "classified_task": "math",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 47,
+      "tags": [
+        "multi_part"
+      ]
+    },
+    {
+      "id": "analysis-001",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 45,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 20,
+      "tags": [
+        "obvious_premium",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-002",
+      "task": "analysis",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 23,
+      "tags": [
+        "borderline",
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "analysis-003",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 20,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "analysis-004",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 22,
+      "tags": [
+        "borderline"
+      ]
+    },
+    {
+      "id": "analysis-005",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 37,
+      "tags": [
+        "multi_part",
+        "obvious_premium"
+      ]
+    },
+    {
+      "id": "analysis-006",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 45,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 31,
+      "tags": [
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-007",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 55,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 572,
+      "tags": [
+        "long_input"
+      ]
+    },
+    {
+      "id": "analysis-008",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 45,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 26,
+      "tags": [
+        "borderline",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-009",
+      "task": "analysis",
+      "classified_task": "code",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 90,
+      "tags": [
+        "multi_part",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-010",
+      "task": "analysis",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 18,
+      "tags": [
+        "borderline",
+        "implicit_task"
+      ]
+    },
+    {
+      "id": "analysis-011",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 38,
+      "tags": [
+        "multi_part",
+        "output_demand"
+      ]
+    },
+    {
+      "id": "analysis-012",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 45,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 23,
+      "tags": [
+        "borderline",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-013",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 34,
+      "tags": [
+        "multi_part",
+        "obvious_premium"
+      ]
+    },
+    {
+      "id": "analysis-014",
+      "task": "analysis",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 41,
+      "tags": [
+        "borderline",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-015",
+      "task": "analysis",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 10,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 30,
+      "tags": [
+        "implicit_task",
+        "multi_part"
+      ]
+    },
+    {
+      "id": "analysis-016",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 55,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 207,
+      "tags": [
+        "deep_conversation",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-017",
+      "task": "analysis",
+      "classified_task": "qa",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 15,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 15,
+      "tags": [
+        "borderline",
+        "reasoning_cue"
+      ]
+    },
+    {
+      "id": "analysis-018",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 40,
+      "reason": "caller_override",
+      "model_id": "llama3-8b",
+      "input_tokens": 21,
+      "tags": [
+        "override"
+      ]
+    },
+    {
+      "id": "qa-017",
+      "task": "qa",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 10,
+      "reason": "caller_override",
+      "model_id": "premium-default",
+      "input_tokens": 13,
+      "tags": [
+        "override"
+      ]
+    },
+    {
+      "id": "analysis-019",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 40,
+      "reason": "privacy_pii",
+      "model_id": "llama3-8b",
+      "input_tokens": 59,
+      "tags": [
+        "privacy"
+      ]
+    },
+    {
+      "id": "analysis-020",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "local",
+      "routed": "local",
+      "error": null,
+      "score": 40,
+      "reason": "privacy_pii",
+      "model_id": "llama3-8b",
+      "input_tokens": 54,
+      "tags": [
+        "override",
+        "privacy"
+      ]
+    },
+    {
+      "id": "analysis-021",
+      "task": "analysis",
+      "classified_task": "analysis",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 40,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 71,
+      "tags": [
+        "borderline",
+        "privacy"
+      ]
+    },
+    {
+      "id": "extract-015",
+      "task": "extract",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "premium",
+      "error": null,
+      "score": 30,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 10316,
+      "tags": [
+        "context_window",
+        "long_input"
+      ]
+    },
+    {
+      "id": "creative-015",
+      "task": "creative",
+      "classified_task": "creative",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 30,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 20,
+      "tags": [
+        "borderline",
+        "output_demand"
+      ]
+    },
+    {
+      "id": "code-021",
+      "task": "code",
+      "classified_task": "code",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 35,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 35,
+      "tags": [
+        "borderline",
+        "system_prompt"
+      ]
+    },
+    {
+      "id": "summarise-015",
+      "task": "summarise",
+      "classified_task": "summarise",
+      "expected": "local",
+      "routed": "premium",
+      "error": "over",
+      "score": 45,
+      "reason": "score_at_or_above_threshold",
+      "model_id": "premium-default",
+      "input_tokens": 1039,
+      "tags": [
+        "borderline",
+        "long_input"
+      ]
+    },
+    {
+      "id": "math-017",
+      "task": "math",
+      "classified_task": "qa",
+      "expected": "premium",
+      "routed": "local",
+      "error": "under",
+      "score": 20,
+      "reason": "score_below_threshold",
+      "model_id": "phi3-mini",
+      "input_tokens": 69,
+      "tags": [
+        "borderline",
+        "multi_part"
+      ]
+    }
+  ]
+}

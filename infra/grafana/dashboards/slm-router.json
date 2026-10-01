@@ -1,0 +1,1345 @@
+{
+  "uid": "slm-router",
+  "title": "SLM Router",
+  "description": "Cost savings, routing, latency, tokens, feedback and evaluation results.",
+  "tags": [
+    "slm-router"
+  ],
+  "editable": false,
+  "graphTooltip": 1,
+  "schemaVersion": 41,
+  "version": 1,
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "timepicker": {},
+  "refresh": "30s",
+  "timezone": "browser",
+  "fiscalYearStartMonth": 0,
+  "liveNow": false,
+  "links": [],
+  "annotations": {
+    "list": []
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "client",
+        "label": "Client",
+        "type": "query",
+        "datasource": {
+          "type": "grafana-postgresql-datasource",
+          "uid": "slm-postgres"
+        },
+        "query": "SELECT DISTINCT client FROM requests ORDER BY 1",
+        "definition": "SELECT DISTINCT client FROM requests ORDER BY 1",
+        "refresh": 2,
+        "multi": true,
+        "includeAll": true,
+        "allValue": "'__all__'",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "options": [],
+        "sort": 1,
+        "description": "X-Router-Client label: api, playground, demo-loader, ..."
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "type": "text",
+      "title": "",
+      "transparent": true,
+      "options": {
+        "mode": "markdown",
+        "content": "**Local SLM Router.** Every money value is an *estimate* against an all-premium baseline. Filter by `client` to separate demo-loader traffic from playground or API traffic; rows whose provider is `mock` come from the development mock models (simulated answers and latency, illustrative prices). Load demo data with `make demo`."
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 24,
+        "h": 2
+      }
+    },
+    {
+      "id": 2,
+      "type": "row",
+      "title": "Cost savings (estimated USD)",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 2,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Estimated savings",
+      "description": "Sum of baseline cost minus actual cost over successful requests. Estimated: costs use provider-reported tokens priced from config/models.yaml; the baseline prices the same tokens at the premium default, although a cloud model would have written a different number of output tokens. Unknown (not zero) when the premium model has no prices in models.yaml.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT sum(savings_usd) AS \"Estimated savings\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client))"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD",
+          "noValue": "Unknown: no priced requests",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 3,
+        "w": 6,
+        "h": 5
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Savings vs all-premium baseline",
+      "description": "Estimated savings as a share of what the same requests would have cost on the baseline model. Only requests whose savings are known count, on both sides of the ratio.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT 100.0 * sum(savings_usd) / NULLIF(sum(baseline_cost_usd) FILTER (WHERE savings_usd IS NOT NULL), 0) AS \"Savings vs baseline\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client))"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "Unknown: no priced requests",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "decimals": 1
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 3,
+        "w": 6,
+        "h": 5
+      }
+    },
+    {
+      "id": 5,
+      "type": "stat",
+      "title": "Estimated spend",
+      "description": "What the requests actually cost. Local models cost 0. Estimated: costs use provider-reported tokens priced from config/models.yaml; the baseline prices the same tokens at the premium default, although a cloud model would have written a different number of output tokens.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT sum(cost_usd) AS \"Estimated spend\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client))"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD",
+          "noValue": "Unknown: no priced requests",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "decimals": 4
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 3,
+        "w": 6,
+        "h": 5
+      }
+    },
+    {
+      "id": 6,
+      "type": "stat",
+      "title": "Successful requests",
+      "description": "Chat completions answered in the time range (dry runs are not stored).",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT count(*) AS \"Requests\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client))"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "none",
+          "noValue": "0",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 3,
+        "w": 6,
+        "h": 5
+      }
+    },
+    {
+      "id": 7,
+      "type": "barchart",
+      "title": "Estimated savings per day",
+      "description": "Daily sum of estimated savings, by request date (UTC), for the days inside the time range. Estimated: costs use provider-reported tokens priced from config/models.yaml; the baseline prices the same tokens at the premium default, although a cloud model would have written a different number of output tokens.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT to_char(date_trunc('day', created_at), 'YYYY-MM-DD') AS \"Day\", sum(savings_usd) AS \"Estimated savings\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client)) AND savings_usd IS NOT NULL GROUP BY 1 ORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "currencyUSD",
+          "decimals": 4,
+          "noValue": "No priced requests in this time range",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "#3987e5"
+          },
+          "custom": {
+            "fillOpacity": 85,
+            "lineWidth": 1,
+            "axisSoftMin": 0
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "orientation": "vertical",
+        "xField": "Day",
+        "barWidth": 0.3,
+        "showValue": "auto",
+        "legend": {
+          "showLegend": false,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "w": 24,
+        "h": 7
+      }
+    },
+    {
+      "id": 8,
+      "type": "row",
+      "title": "Routing decisions",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 15,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 9,
+      "type": "bargauge",
+      "title": "Routing mix (% of successful requests)",
+      "description": "Local: answered by a local model. Premium: routed to and answered by the cloud model. Fallback: a local model failed (timeout, error or empty answer) and the premium model answered. Cache: answered from the exact-match Redis cache with no model call. The four add up to 100%.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT 100.0 * count(*) FILTER (WHERE NOT cache_hit AND fallback_from IS NULL AND tier = 'local') / NULLIF(count(*), 0) AS \"Local\", 100.0 * count(*) FILTER (WHERE NOT cache_hit AND fallback_from IS NULL AND tier = 'premium') / NULLIF(count(*), 0) AS \"Premium\", 100.0 * count(*) FILTER (WHERE NOT cache_hit AND fallback_from IS NOT NULL) / NULLIF(count(*), 0) AS \"Fallback\", 100.0 * count(*) FILTER (WHERE cache_hit) / NULLIF(count(*), 0) AS \"Cache\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client))"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "decimals": 1,
+          "min": 0,
+          "max": 100,
+          "noValue": "No requests in this time range",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Local"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Premium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fallback"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cache"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#c98500"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic",
+        "valueMode": "text",
+        "showUnfilled": true,
+        "namePlacement": "left",
+        "text": {
+          "titleSize": 14,
+          "valueSize": 16
+        },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "w": 7,
+        "h": 8
+      }
+    },
+    {
+      "id": 10,
+      "type": "timeseries",
+      "title": "Requests by route over time",
+      "description": "Successful requests per interval, stacked by route.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "time_series",
+          "rawQuery": true,
+          "rawSql": "SELECT $__timeGroupAlias(created_at, $__interval), count(*) FILTER (WHERE NOT cache_hit AND fallback_from IS NULL AND tier = 'local') AS \"Local\", count(*) FILTER (WHERE NOT cache_hit AND fallback_from IS NULL AND tier = 'premium') AS \"Premium\", count(*) FILTER (WHERE NOT cache_hit AND fallback_from IS NOT NULL) AS \"Fallback\", count(*) FILTER (WHERE cache_hit) AS \"Cache\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client)) GROUP BY 1 ORDER BY 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "decimals": 0,
+          "noValue": "No requests in this time range",
+          "custom": {
+            "drawStyle": "bars",
+            "fillOpacity": 85,
+            "lineWidth": 1,
+            "stacking": {
+              "mode": "normal",
+              "group": "A"
+            },
+            "axisSoftMin": 0
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Local"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Premium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Fallback"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#199e70"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Cache"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#c98500"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "gridPos": {
+        "x": 7,
+        "y": 16,
+        "w": 9,
+        "h": 8
+      }
+    },
+    {
+      "id": 11,
+      "type": "table",
+      "title": "Why requests went where they did",
+      "description": "Routing reason per answering tier. Reasons come from the policy: the score threshold, a caller override, a capability or context-window rule, or privacy.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT reason AS \"Reason\", tier AS \"Tier\", count(*) AS \"Requests\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client)) GROUP BY reason, tier ORDER BY count(*) DESC"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "No requests in this time range"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tier"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Requests"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 80
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 16,
+        "w": 8,
+        "h": 8
+      }
+    },
+    {
+      "id": 12,
+      "type": "row",
+      "title": "Latency (p95)",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 13,
+      "type": "timeseries",
+      "title": "p95 latency by tier (Prometheus)",
+      "description": "95th percentile of end-to-end latency (fallback included), from the router_latency_seconds histogram over a sliding window, by the tier that answered. Percentiles are interpolated inside histogram buckets. Gaps mean no traffic in the window; the API's counters restart with the container.",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "slm-prometheus"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "prometheus",
+            "uid": "slm-prometheus"
+          },
+          "editorMode": "code",
+          "expr": "histogram_quantile(0.95, sum by (le, tier) (rate(router_latency_seconds_bucket[$__rate_interval])))",
+          "legendFormat": "{{tier}}",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "s",
+          "decimals": 2,
+          "noValue": "No traffic in this time range",
+          "custom": {
+            "drawStyle": "line",
+            "lineWidth": 2,
+            "fillOpacity": 0,
+            "pointSize": 8,
+            "showPoints": "auto",
+            "spanNulls": false,
+            "axisSoftMin": 0
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "local"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "premium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 25,
+        "w": 16,
+        "h": 8
+      }
+    },
+    {
+      "id": 14,
+      "type": "bargauge",
+      "title": "p95 latency by tier (whole time range)",
+      "description": "Exact 95th percentile of stored latencies (Postgres percentile_cont) over the whole selected range, by the tier that answered. Use it when traffic came in a burst, such as one demo load. Cache hits are left out: no model ran.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT tier AS \"Tier\", percentile_cont(0.95) WITHIN GROUP (ORDER BY latency_ms) AS \"p95\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client)) AND latency_ms IS NOT NULL AND NOT cache_hit GROUP BY tier ORDER BY tier"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "ms",
+          "decimals": 0,
+          "min": 0,
+          "noValue": "No requests in this time range",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "local"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#3987e5"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "premium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d95926"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "displayMode": "basic",
+        "valueMode": "text",
+        "showUnfilled": true,
+        "namePlacement": "left",
+        "text": {
+          "titleSize": 14,
+          "valueSize": 16
+        },
+        "reduceOptions": {
+          "calcs": [],
+          "fields": "/^p95$/",
+          "values": true
+        }
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 25,
+        "w": 8,
+        "h": 8
+      }
+    },
+    {
+      "id": 15,
+      "type": "row",
+      "title": "Token usage and quality feedback",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 33,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 16,
+      "type": "barchart",
+      "title": "Tokens by model (input vs output)",
+      "description": "Tokens as reported by each provider (estimated with tiktoken when a provider reports none), summed per models.yaml model id over successful requests. Cache hits are left out: no model processed them.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT model_id AS \"Model\", sum(input_tokens) AS \"Input tokens\", sum(output_tokens) AS \"Output tokens\" FROM requests WHERE $__timeFilter(created_at) AND status = 'ok' AND ('__all__' IN ($client) OR client IN ($client)) AND NOT cache_hit GROUP BY model_id ORDER BY model_id"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "noValue": "No requests in this time range",
+          "custom": {
+            "fillOpacity": 85,
+            "lineWidth": 1,
+            "axisSoftMin": 0
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Input tokens"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#9085e9"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Output tokens"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "mode": "fixed",
+                  "fixedColor": "#d55181"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "horizontal",
+        "xField": "Model",
+        "groupWidth": 0.7,
+        "barWidth": 0.9,
+        "showValue": "auto",
+        "stacking": "none",
+        "legend": {
+          "showLegend": true,
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 34,
+        "w": 12,
+        "h": 9
+      }
+    },
+    {
+      "id": 17,
+      "type": "stat",
+      "title": "Thumbs-up rate",
+      "description": "Share of rated answers given a thumbs up (one rating per answer; a changed vote replaces the first). Demo-loader ratings are synthetic fixtures, not user judgements: filter client to exclude them.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT 100.0 * count(*) FILTER (WHERE f.rating = 1) / NULLIF(count(*), 0) AS \"Thumbs-up rate\" FROM feedback f JOIN requests r ON r.id = f.request_id WHERE $__timeFilter(f.created_at) AND ('__all__' IN ($client) OR r.client IN ($client))"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "No feedback in this time range",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "decimals": 0
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 34,
+        "w": 4,
+        "h": 9
+      }
+    },
+    {
+      "id": 18,
+      "type": "table",
+      "title": "Thumbs-up rate by tier",
+      "description": "Ratings grouped by the tier that answered (fallbacks count as premium). The rate is shown once a tier has at least 5 votes; below that it is too noisy to read, so only the vote count is shown.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT r.tier AS \"Tier\", count(*) AS \"Votes\", count(*) FILTER (WHERE f.rating = 1) AS \"Thumbs up\", CASE WHEN count(*) >= 5 THEN 100.0 * count(*) FILTER (WHERE f.rating = 1) / count(*) END AS \"Thumbs-up rate\" FROM feedback f JOIN requests r ON r.id = f.request_id WHERE $__timeFilter(f.created_at) AND ('__all__' IN ($client) OR r.client IN ($client)) GROUP BY r.tier ORDER BY r.tier"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "No feedback in this time range"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Tier"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 90
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Votes"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 70
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Thumbs up"
+            },
+            "properties": [
+              {
+                "id": "custom.width",
+                "value": 100
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Thumbs-up rate"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percent"
+              },
+              {
+                "id": "decimals",
+                "value": 0
+              },
+              {
+                "id": "noValue",
+                "value": "Fewer than 5 votes"
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 34,
+        "w": 8,
+        "h": 9
+      }
+    },
+    {
+      "id": 19,
+      "type": "row",
+      "title": "Model performance (evaluation runs)",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 43,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 20,
+      "type": "stat",
+      "title": "Router accuracy",
+      "description": "Share of labelled prompts routed to their expected tier (dry run, no model called). From the latest evaluation run that measured it, whatever the time range. Written by `make eval-store` (eval/run_eval.py); see docs/results.md for the method.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT router_accuracy AS \"Router accuracy\" FROM eval_runs WHERE router_accuracy IS NOT NULL ORDER BY created_at DESC LIMIT 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "No eval runs yet (make eval-store)",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "decimals": 1
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 44,
+        "w": 4,
+        "h": 6
+      }
+    },
+    {
+      "id": 21,
+      "type": "stat",
+      "title": "Under-routed",
+      "description": "Prompts labelled premium that were routed local, as % of all labelled prompts. This hurts answer quality, so the threshold is tuned to keep it low. From the latest evaluation run that measured it, whatever the time range. Written by `make eval-store` (eval/run_eval.py); see docs/results.md for the method.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT under_routed_pct AS \"Under-routed\" FROM eval_runs WHERE under_routed_pct IS NOT NULL ORDER BY created_at DESC LIMIT 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "No eval runs yet (make eval-store)",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "decimals": 1
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 4,
+        "y": 44,
+        "w": 4,
+        "h": 6
+      }
+    },
+    {
+      "id": 22,
+      "type": "stat",
+      "title": "Answer quality",
+      "description": "Graded local answers judged the same as or better than the premium answer, by the premium model (model-based grading, spot-checked by hand; not ground truth). From the latest evaluation run that measured it, whatever the time range. Written by `make eval-store` (eval/run_eval.py); see docs/results.md for the method.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT quality_score AS \"Answer quality\" FROM eval_runs WHERE quality_score IS NOT NULL ORDER BY created_at DESC LIMIT 1"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percent",
+          "noValue": "Not measured yet (paid check: make eval-quality-paid)",
+          "color": {
+            "mode": "fixed",
+            "fixedColor": "text"
+          },
+          "decimals": 1
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "none",
+        "graphMode": "none",
+        "justifyMode": "center",
+        "textMode": "value",
+        "orientation": "auto"
+      },
+      "gridPos": {
+        "x": 8,
+        "y": 44,
+        "w": 4,
+        "h": 6
+      }
+    },
+    {
+      "id": 23,
+      "type": "table",
+      "title": "Evaluation runs",
+      "description": "Every evaluation run in the time range: threshold, dataset size, accuracy, under- and over-routing, local share, estimated savings and answer quality (all %). From the latest evaluation run that measured it, whatever the time range. Written by `make eval-store` (eval/run_eval.py); see docs/results.md for the method.",
+      "datasource": {
+        "type": "grafana-postgresql-datasource",
+        "uid": "slm-postgres"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "grafana-postgresql-datasource",
+            "uid": "slm-postgres"
+          },
+          "editorMode": "code",
+          "format": "table",
+          "rawQuery": true,
+          "rawSql": "SELECT created_at AS \"Run\", threshold AS \"Threshold\", dataset_size AS \"Prompts\", router_accuracy AS \"Accuracy %\", under_routed_pct AS \"Under-routed %\", over_routed_pct AS \"Over-routed %\", local_share AS \"Local share %\", savings_pct AS \"Savings % (est.)\", quality_score AS \"Quality %\" FROM eval_runs WHERE $__timeFilter(created_at) ORDER BY created_at DESC LIMIT 50"
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "noValue": "No evaluation runs stored yet: run `make eval eval-store`"
+        },
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true,
+        "cellHeight": "sm"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 44,
+        "w": 12,
+        "h": 6
+      }
+    }
+  ]
+}
