@@ -21,16 +21,16 @@ Every answer also **explains itself**. It says which model answered, why it was 
 
 **How to read this diagram**
 
-1. A **client application** (a chat app, a script, or our demo web page) sends a question to the router.
-2. The **API gateway** checks the caller's access key and makes sure the request is well formed.
-3. The **guardrails** reject requests that are far too long and scan for personal details such as email addresses, phone numbers and card numbers.
-4. The router checks the **Redis cache** to see if it has answered this exact question recently. If so, it replies instantly for free.
-5. The **prompt classifier** works out what kind of task it is (a greeting, a translation, code, maths and so on) and gives it a complexity score.
-6. The **routing policy** applies a few safety rules, then compares the score with the threshold of 30 to choose local or cloud.
-7. The question goes either to a **local model** running in Ollama or to the **premium cloud model**.
-8. If the local model fails or is too slow, the router **falls back** to the cloud model automatically.
-9. The **response aggregator** puts every answer into the same format and adds the routing explanation, cost and savings.
-10. The answer goes back to the client. A record is saved in **PostgreSQL**, and live numbers go to **Prometheus and Grafana** for the dashboard.
+1. A **client** (any app using the OpenAI SDK) sends a question to the router's **FastAPI gateway**.
+2. The **PII guardrail** rejects requests that are far too long and scans for personal details such as email addresses, phone numbers and card numbers.
+3. The router checks the **Redis cache**. On a **hit**, it has answered this exact question recently and sends the saved answer straight back to the client, instantly and for free.
+4. On a **miss**, the question goes to the **complexity router**, which works out what kind of task it is, gives it a score, and applies a few safety rules.
+5. **Simple** questions (score under 30) go to a local model in **Ollama**: Phi-3, Llama 3.1 or Mistral.
+6. **Complex** questions (score of 30 or more) go to the **premium cloud LLM**.
+7. If the local model fails or is too slow, the router **falls back** to the cloud model automatically.
+8. Every answer is logged to **PostgreSQL** with its cost and savings.
+9. The **savings dashboard** reads those records to show how much routing saved.
+10. The router also sends live **metrics** such as response times to **Prometheus and Grafana**.
 
 ## Why This Project Exists
 
